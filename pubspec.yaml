@@ -31,8 +31,11 @@ dependencies:
   shared_preferences: ^2.0.6
   cached_network_image: ^3.0.0
   font_awesome_flutter: ^9.1.0
+  http: ^0.13.3
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
+  get: ^4.3.4
+  device_preview: ^0.7.4
 
 dev_dependencies:
   flutter_test:

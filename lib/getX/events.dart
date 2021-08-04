@@ -1,0 +1,1 @@
+enum xStatus{loading,loaded,process,empty,error}

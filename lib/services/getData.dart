@@ -45,13 +45,14 @@ class GetData {
       );
     }
     if (q.statusCode == 200) {
-      print('normano='+q.body);
+      print('normalno='+q.body);
       Map<String, dynamic> _temp;
       List<dynamic> _listmap=[];
 
       _temp = jsonDecode(q.body);
 
       _listmap=_temp['data'];
+      print(_listmap.runtimeType);
       return _listmap;
     } else {
       print('erere'+q.body);

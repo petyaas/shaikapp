@@ -34,8 +34,11 @@ dependencies:
   http: ^0.13.3
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
-  get: ^4.3.4
   device_preview: ^0.7.4
+  bottom_navy_bar: ^6.0.0
+  animate_do: ^2.0.0
+  #state_manager:
+  get: ^4.3.4
 
 dev_dependencies:
   flutter_test:

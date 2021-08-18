@@ -1,64 +1,66 @@
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shaikapp/getX/categoryX.dart';
-import 'package:shaikapp/getX/events.dart';
-import 'package:shaikapp/consts.dart';
-class Categories extends StatelessWidget {
-  final int index;
-  Categories({required this.index});
-  final categoryX = Get.put(CategoryGetX());
+import 'package:shaikapp/models/category_list.dart';
 
+import '../style.dart';
+import 'CustomExpansionTile.dart';
+
+class Categories extends StatelessWidget {
+   final CategoryList category;
+  Categories({required this.category});
   @override
   Widget build(BuildContext context) {
     return
-      Obx((){
-            if(categoryX.status.value==xStatus.empty){
-      return Text('Empty...');
-            }
-            if(categoryX.status.value==xStatus.loading){
-      return Center(child: CircularProgressIndicator(),);
-            }
-            if(categoryX.status.value==xStatus.loaded)
-      {
-        return
-          Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(1, 1), // changes position of shadow
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(10),
-                height: (MediaQuery.of(context).size.height-60)*0.25,
-                width:  MediaQuery.of(context).size.width*0.4,
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: apiConsts.host
-                      +categoryX.listOfCategory!.value[index].img_tk,
-                ),
-              ),
-              Text(categoryX.listOfCategory!.value[index].name_tk),
-            ],
-          );
+      CustomExpansionTile(
+       title: Text(
+         category.name_tk,
+         style: AppColor.headlinebluegray,
+       ),
+       children: <Widget>[
+         Divider(
+           color: AppColor.greyblue,
+         ),
+         subcategory(category: category)
 
-      }
-            return Center(child: Text('Error..'),);
+       ],
+        );
+  }
+}
 
-        });
+class subcategory extends StatelessWidget {
+  const subcategory({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
+
+  final CategoryList category;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      //crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        for(int i=0;i<=category.sub_category_list.length-1;i++)
+          Container(
+            padding: EdgeInsets.all(20),
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                     Text(category.sub_category_list[i].name_tk,style: AppColor.headlinebluegray,),
+                     Container(
+                       width: 35,
+                         decoration: BoxDecoration(
+                             border: Border.all(
+                               color: AppColor.greenlight,
+                             ),
+                             borderRadius: BorderRadius.all(Radius.circular(35))
+                         ),
+                         child: Center(child: Text(category.sub_category_list[i].product_count.toString(),style: AppColor.headlinebluegray,))
+                     )
+              ],
+            ),
+          ),
+      ],
+    );
   }
 }

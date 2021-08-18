@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shaikapp/screens/startScreen.dart';
 
 import 'HomeScreen.dart';
 
@@ -11,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final splashDelay = 3;
-  String navigatepage='HomeScreen';
+  String navigatepage='StartScreen';
   void initState()  {
     super.initState();
     _loadWidget();
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   void navigationPage() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (BuildContext context) => HomeScreen()));
+        builder: (BuildContext context) => StartScreen()));
   }
 
   @override

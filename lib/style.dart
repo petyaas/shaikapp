@@ -34,6 +34,7 @@ class AppColor {
   static const TextStyle headlinebluegray2=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w300,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinebluegray1=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w400 ,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinebluegray=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w500 ,fontSize: 16,fontFamily: "Euclid");
+  static const TextStyle bottomNavBarText=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w500 ,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight3=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontSize: 8,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight1=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontSize: 16, fontFamily: "Euclid");

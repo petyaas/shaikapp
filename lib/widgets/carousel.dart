@@ -24,15 +24,17 @@ class CoruselImages extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       // Image.network(item, fit: BoxFit.cover, width: 1000,),
-                      CachedNetworkImage(
-                        fit: BoxFit.cover,width: 1000,
-                        // imageUrl: 'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-                        imageUrl: apiConsts.host+element.img_tk,
-                        placeholder: (context, url) => Container(
-                          // width: 50,height: 50 ,
-                            child: Center(child: CircularProgressIndicator())
+                      Center(
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,width: 1000,
+                          // imageUrl: 'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+                          imageUrl: ApiLinks.host+element.img_tk,
+                          placeholder: (context, url) => Container(
+                            // width: 50,height: 50 ,
+                              child: Center(child: CircularProgressIndicator())
+                          ),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ],
                   )),

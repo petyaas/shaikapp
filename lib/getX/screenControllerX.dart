@@ -24,6 +24,10 @@ class ScreenControllerX extends GetxController{
       screenIndex.value=index;
       screen.value=xScreen.profil;
     }
+    if(index==5){
+      screenIndex.value=index;
+      screen.value=xScreen.products;
+    }
   }
 
 }

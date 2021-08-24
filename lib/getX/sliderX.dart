@@ -16,11 +16,12 @@ class SliderGetX extends GetxController{
   @override
   void getSliders()async{
     status.value=xStatus.loading;
-    try{
+    //TODO try goshmaly
+// try{
       listOfSliders!.value=await GetData().getSliderLIst();
       status.value=xStatus.loaded;
-    }catch(_){
-      status.value=xStatus.empty;
-    }
+    // }catch(_){
+    //   status.value=xStatus.empty;
+    // }
   }
 }

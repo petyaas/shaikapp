@@ -11,9 +11,6 @@ List<SubCategoryList> SubCategoryListsFromJson(List<dynamic> str) {
   }
   return _list;
 
-  // return List<SubCategoryList>.from(
-  //     json.decode(str).map((x) => SubCategoryList.fromJson(x))
-  // );
 
 }
 

@@ -1,61 +1,93 @@
 import 'dart:convert';
 
 import 'package:shaikapp/consts.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:shaikapp/models/category_list.dart';
+import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/models/slider_list.dart';
 
 class GetData {
  Future<List<SliderList>> getSliderLIst()async{
+   Response? _response;
+   Map<String, dynamic> _map;
    List<dynamic>? _temp;
-   _temp=await _postData(apiConsts.sliderList, '', '');
-   return _temp.map((json) => SliderList.fromJson(json)).toList();
+   _response=await _postData(ApiLinks.sliderList, null, '');
+   _map=_response.data;
+   _temp=_map['data'];
+
+   return _temp!.map((json) => SliderList.fromJson(json)).toList();
   }
  Future<List<CategoryList>> getCategoryLIst()async{
+   Response? _response;
+   Map<String, dynamic> _map;
    List<dynamic>? _temp;
-   _temp=await _postData(apiConsts.categoryList, '', '');
-   return _temp.map((json) => CategoryList.fromJson(json)).toList();
-  }
+   _response=await _postData(ApiLinks.categoryList, null, '');
+   _map=_response.data;
+   _temp=_map['data'];
+   return _temp!.map((json) => CategoryList.fromJson(json)).toList();
+ }
+ Future<List<Products>> getProductLIst(String sub_category_id,int begin,int end)async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   List<dynamic>? _temp;
+   FormData formData;
+   formData=FormData.fromMap({
+     'sub_category_id':sub_category_id,
+     'filter':'{"begin":${begin},"end":${end}}',
+   });
+   _response=await _postData(ApiLinks.productList, formData, '');
+   _map=_response.data;
+   _temp=_map['data']['products'];
 
-  Future<List<dynamic>> _postData(
-      String endpoint, String body, String token) async {
+   // if(_temp[0]['total']!=0){_temp=_temp[0]['products'];}else{_temp=[];}
 
-    final http.Response q;
-    print('dededededed');
+   return _temp!.map((json) => Products.fromJson(json)).toList();
+ }
+
+  Future<Response> _postData(
+      String endpoint, FormData? body, String token) async {
+    var dio = Dio();
+    // FormData formData;
+    // if (body.length>0){formData = new FormData.fromMap(jsonDecode(body));}else{formData;}
+    //
+    Response  q;
+    if (body!=null){print(body.fields.toString());}
+
 
     if (token.length > 0) {
       print('token-true');
-      q = await http.post(
-        Uri.https(
-          apiConsts.host,
-          endpoint,
-        ),
-        headers: <String, String>{
-          'authorization': '$token',
-        },
-        body: body,
+      q = await dio.post(ApiLinks.host+endpoint,
+        // data: formData,
+        options: Options(headers: {
+            'authorization': '$token',
+        })
+        // headers: <String, String>{
+        // },
+        // body: body,
       );
     } else {
       print('token-false');
-      print('mla='+apiConsts.host+endpoint);
-      q = await http.post(
-        Uri.parse(
-          apiConsts.host+endpoint,
-        ),
-      );
+      print('mla='+ApiLinks.host+endpoint);
+      q = await dio.post(ApiLinks.host+endpoint,
+
+          data: body,
+          // options: Options(headers: {
+          //   'authorization': '$token',
+          );
     }
     if (q.statusCode == 200) {
-      print('normalno='+q.body);
-      Map<String, dynamic> _temp;
-      List<dynamic> _listmap=[];
-
-      _temp = jsonDecode(q.body);
-
-      _listmap=_temp['data'];
-      print(_listmap.runtimeType);
-      return _listmap;
+      print('normalno='+q.data.toString());
+      // Map<String, dynamic> _temp;
+      // List<dynamic> _listmap=[];
+      //
+      // _temp = q.data;
+      // print(_temp);
+      //
+      // _listmap=_temp['data'];
+      // print(_listmap.runtimeType);
+      return q;
     } else {
-      print('erere'+q.body);
+      print('erere'+q.data.toString());
       throw Exception(endpoint + '-load error');
     }
   }

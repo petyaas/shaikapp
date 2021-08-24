@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shaikapp/getX/categoryX.dart';
 import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/getX/screenControllerX.dart';
+import 'package:shaikapp/screens/products_screen.dart';
 import 'package:shaikapp/widgets/buttom_nav_bar.dart';
 
 import '../style.dart';
@@ -68,6 +69,11 @@ class StartScreen extends StatelessWidget {
             {
               return
                 Center(child: Text('profil'),);
+            }
+          if(screenControlX.screen.value==xScreen.products)
+            {
+              return
+                ProductsScreen();
             }
           return Center(child: Text('Error'),);
         }),

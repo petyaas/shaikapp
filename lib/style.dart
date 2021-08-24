@@ -4,6 +4,8 @@ class AppColor {
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
  static const Color backgroundcolor=Color(0xFF0C0F1B);
  static const Color backgroundcolorgrey=Color(0xFF212A48);
+ static const Color productshadow=Color(0xFF212A48);
+ static const Color productprice=Color(0xFFEA7844);
  static const Color laghtBlueGray=Color(0xFF4C5166);
  static const Color ticketbackgruond=Color(0xFF080B15);
 
@@ -34,10 +36,21 @@ class AppColor {
   static const TextStyle headlinebluegray2=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w300,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinebluegray1=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w400 ,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinebluegray=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w500 ,fontSize: 16,fontFamily: "Euclid");
+  static const TextStyle headlinebluegraybold=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w800 ,fontSize: 20,fontFamily: "Euclid");
+  static const TextStyle productpricetext=TextStyle(color: AppColor.productprice,fontWeight: FontWeight.w500 ,fontSize: 16,fontFamily: "Euclid");
+  static const TextStyle
+  productOldPriceText=
+  TextStyle(
+      color: AppColor.laghtBlueGray,
+      fontWeight: FontWeight.w500 ,
+      fontSize: 12,
+      decoration: TextDecoration.lineThrough,
+      fontFamily: "Euclid");
   static const TextStyle bottomNavBarText=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w500 ,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight3=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontSize: 8,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontFamily: "Euclid");
   static const TextStyle headlinewhitelight1=TextStyle(color: AppColor.white,fontWeight: FontWeight.w300,fontSize: 16, fontFamily: "Euclid");
+  static const TextStyle productStatus=TextStyle(color: AppColor.white,fontWeight: FontWeight.w600,fontSize: 16, fontFamily: "Euclid");
 
   static getThemeData() => ThemeData(
 
@@ -50,6 +63,9 @@ class AppColor {
       ),
     ),
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: backgroundcolorgrey,
+      ),
       backgroundColor:Colors.white,
     ),
     textButtonTheme: TextButtonThemeData(),
@@ -79,7 +95,7 @@ class AppColor {
         fontWeight: FontWeight.w100,
       ),
     ),
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Color(0xFFF2F2F2),
     primaryColorLight: Color.fromRGBO(47, 51, 57, 1),
     accentColor: Color.fromRGBO(247, 200, 115, 1),
   );

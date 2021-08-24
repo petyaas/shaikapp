@@ -9,17 +9,18 @@ class CategoryGetX extends GetxController{
 
 @override
   void onInit() {
-  getCategory();
+  // getCategory();
     super.onInit();
   }
   @override
   void getCategory()async{
   status.value=xStatus.loading;
-  // try{
+  //TODO try goshmaly
+  try{
     listOfCategory!.value=await GetData().getCategoryLIst();
     status.value=xStatus.loaded;
-  // }catch(_){
-  //   status.value=xStatus.empty;
-  // }
+  }catch(_){
+    status.value=xStatus.empty;
+  }
   }
 }

@@ -3,25 +3,33 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
+import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/screens/productPage.dart';
+import 'package:shaikapp/services/LangSelector.dart';
 import 'package:shaikapp/widgets/ImageLoader.dart';
+import 'package:shaikapp/widgets/productLike.dart';
 
 import '../style.dart';
 import 'BagButton.dart';
 import 'ProductStatus.dart';
 class ProductMini extends StatelessWidget {
   Products product;
+  bool isliked;
   // VoidCallback onTap;
   ProductMini(
       {
         required this.product,
+        required this.isliked,
     // required this.onTap
       });
   @override
   Widget build(BuildContext context) {
 
+    final langSelectorX = Get.put(LangSelector());
+    final productX = Get.put(ProductX());
+    final profileX = Get.put(ProfileX());
 
     return Container(
       padding: EdgeInsets.all(5),
@@ -31,16 +39,8 @@ class ProductMini extends StatelessWidget {
           color: Colors.transparent,
         ),
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.productshadow.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 0), // changes position of shadow
-          ),
-        ],
       ),
-      height: 300,width:  (MediaQuery.of(context).size.width*0.45),
+      height: 250,width:  (MediaQuery.of(context).size.width*0.45),
       child:
       Stack(
         children: [
@@ -48,7 +48,7 @@ class ProductMini extends StatelessWidget {
             onTap: (){Get.to(ProductPage(product: product,));},
             child: Column(
               children: [
-                Expanded(
+                if(langSelectorX.istklang.value==false)Expanded(
                   flex: 5,
                   child:
                   Container(
@@ -58,13 +58,33 @@ class ProductMini extends StatelessWidget {
                     child: ImageLaoder(url: product.img_tk.little,),
                   ),
                 ),
-                Expanded(
+                if(langSelectorX.istklang.value==true)Expanded(
+                  flex: 5,
+                  child:
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: ImageLaoder(url: product.img_ru.little,),
+                  ),
+                ),
+                if(langSelectorX.istklang.value==false)Expanded(
                     child:
                     AutoSizeText(
                       product.code+' (${product.analog_tk})',
                       style: AppColor.headlinebluegray,
                       textAlign: TextAlign.center,
-                      minFontSize: 10,
+                      minFontSize: 8,
+                      maxLines: 2,
+                    )
+                ),
+                if(langSelectorX.istklang.value==true)Expanded(
+                    child:
+                    AutoSizeText(
+                      product.code+' (${product.analog_ru})',
+                      style: AppColor.headlinebluegray,
+                      textAlign: TextAlign.center,
+                      minFontSize: 8,
                       maxLines: 2,
                     )
                 ),
@@ -78,7 +98,7 @@ class ProductMini extends StatelessWidget {
                           product.new_price.toString()+' TMT',
                           style: AppColor.productpricetext,
                           textAlign: TextAlign.center,
-                          minFontSize: 10,
+                          minFontSize: 8,
                           maxLines: 1,
                         ),
                         if(product.old_price!=0)
@@ -86,7 +106,7 @@ class ProductMini extends StatelessWidget {
                             product.old_price.toString()+' TMT',
                             style: AppColor.productOldPriceText,
                             textAlign: TextAlign.center,
-                            minFontSize: 10,
+                            minFontSize: 8,
                             maxLines: 1,
                           ),
                       ],
@@ -96,8 +116,11 @@ class ProductMini extends StatelessWidget {
               ],
             ),
           ),
-          if(product.status!='OLD')
-            ProductStatus(status: product.status,),
+          // if(product.status!='OLD')
+          ProductStatus(status: product.status.tr,),
+                 ProductLike(isLiked: isliked,
+                 onTap: (){productX.setLike(profileX.user.value.id, product.id);},),
+
         ],
       ),
     );

@@ -3,6 +3,7 @@ class AppColor {
   static const Color gold = Color.fromRGBO(247, 200, 115, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
  static const Color backgroundcolor=Color(0xFF0C0F1B);
+ static const Color backgroundLightcolor=Color(0x220C0F1B);
  static const Color backgroundcolorgrey=Color(0xFF212A48);
  static const Color productshadow=Color(0xFF212A48);
  static const Color productprice=Color(0xFFEA7844);
@@ -26,6 +27,7 @@ class AppColor {
   static const TextStyle headlinewhite=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 24,letterSpacing: 0,fontFamily: "Euclid");
   static const TextStyle miniwhite=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 14,letterSpacing: 0,fontFamily: "Euclid");
   static const TextStyle headlinegrey=TextStyle(color: AppColor.grey,fontWeight: FontWeight.w500,fontSize: 12,height: 2,fontFamily: "Euclid");
+  static const TextStyle headlinegreylight=TextStyle(color: AppColor.laghtBlueGray,fontWeight: FontWeight.w500,fontSize: 12,height: 2,fontFamily: "Euclid");
   static const TextStyle headlinewhite1=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 16,fontFamily: "Euclid");
   static const TextStyle headlinewhitebold=TextStyle(color: AppColor.white,fontWeight: FontWeight.w600,fontSize: 20,fontFamily: "Euclid");
   static const TextStyle headlinewhitebol2=TextStyle(color: AppColor.white,fontWeight: FontWeight.w600,fontSize: 14,fontFamily: "Euclid");
@@ -38,6 +40,7 @@ class AppColor {
   static const TextStyle headlinebluegray=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w500 ,fontSize: 16,fontFamily: "Euclid");
   static const TextStyle headlinebluegraybold=TextStyle(color: AppColor.backgroundcolorgrey,fontWeight: FontWeight.w800 ,fontSize: 20,fontFamily: "Euclid");
   static const TextStyle productpricetext=TextStyle(color: AppColor.productprice,fontWeight: FontWeight.w500 ,fontSize: 16,fontFamily: "Euclid");
+
   static const TextStyle
   productOldPriceText=
   TextStyle(

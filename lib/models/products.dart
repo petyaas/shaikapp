@@ -26,6 +26,7 @@ int old_price;
 int new_price;
 int visited;
 int buying;
+int like_count;
 String status;
 List<dynamic> about_tk;
 List<dynamic> about_ru;
@@ -44,6 +45,7 @@ Products({
   required this.new_price,
   required this.visited,
   required this.buying,
+  required this.like_count,
   required this.status,
   required this.about_tk,
   required this.about_ru,
@@ -65,6 +67,7 @@ factory Products.fromJson(Map<String, dynamic> json) {
       new_price: json["new_price"],
       visited:json ["visited"],
       buying:json ["buying"],
+      like_count:json ["like_count"],
       status: json["status"],
       about_tk:json ["about_tk"],
       about_ru: json["about_ru"],

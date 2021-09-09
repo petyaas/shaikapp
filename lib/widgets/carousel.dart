@@ -6,16 +6,22 @@ import 'package:shaikapp/getX/sliderX.dart';
 import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/models/slider_list.dart';
 import 'package:get/get.dart';
+import 'package:shaikapp/services/LangSelector.dart';
 class CoruselImages extends StatelessWidget {
   final sliderX = Get.put(SliderGetX());
 
   @override
   Widget build(BuildContext context) {
+    final langSelectorX = Get.put(LangSelector());
 
     List<Widget>? imageList(List<SliderList> data){
       List<Widget>? _temp=[];
+      String img;
       data.forEach((element) {
         print('data='+element.img_tk);
+        if(langSelectorX.istklang.value==true)
+          {img=element.img_tk;}else{img=element.img_ru;}
+
         _temp.add(
             Container(
               margin: EdgeInsets.all(5.0),
@@ -27,8 +33,9 @@ class CoruselImages extends StatelessWidget {
                       Center(
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,width: 1000,
+
                           // imageUrl: 'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-                          imageUrl: ApiLinks.host+element.img_tk,
+                          imageUrl: ApiLinks.host+img,
                           placeholder: (context, url) => Container(
                             // width: 50,height: 50 ,
                               child: Center(child: CircularProgressIndicator())
@@ -51,13 +58,16 @@ return _temp;
         return Center(child: Text('Empty...'));
       }
       if(sliderX.status.value==xStatus.loading){
-        return Center(child: CircularProgressIndicator(),);
+        return Container(
+            height: MediaQuery.of(context).size.width*0.56,
+            child: Center(child: CircularProgressIndicator(),)
+        );
       }
       if(sliderX.status.value==xStatus.loaded){
         return
             CarouselSlider(
               options: CarouselOptions(
-                height: (MediaQuery.of(context).size.height-60)*0.35,
+                height: MediaQuery.of(context).size.width*0.56,
                 viewportFraction: 1,
                 // aspectRatio:1.0,
                 enlargeCenterPage: false,

@@ -19,7 +19,8 @@ class CategoryScreen extends StatelessWidget {
                 return
                   Stack(
                     children: [
-                      if(categoryX.listOfCategory!.length!=0)ListView.separated(
+                      if(categoryX.listOfCategory!.length!=0)
+                        ListView.separated(
                         padding: const EdgeInsets.all(8),
                         itemCount: categoryX.listOfCategory!.value.length,
                         itemBuilder: (BuildContext context, int index) {

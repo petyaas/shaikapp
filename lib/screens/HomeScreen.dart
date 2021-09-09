@@ -13,7 +13,9 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CoruselImages(),
+                Container(
+                  color: Colors.white,
+                    child: CoruselImages()),
               ],
             ),
       );

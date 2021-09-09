@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
@@ -25,23 +26,23 @@ class ProductsScreen extends StatelessWidget {
       child: FadeInRight(
         duration: Duration(milliseconds: 100),
         child: Obx(() {
-          if (productX.status == xStatus.loading) {
+          if (productX.productStatus == xStatus.loading) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (productX.status == xStatus.empty) {
+          if (productX.productStatus == xStatus.empty) {
             return Center(
               child: Text('empty!!!'),
             );
           }
 
-          if (productX.status == xStatus.loaded) {
+          if (productX.productStatus == xStatus.loaded) {
             print((productX.listOfProducts!.length/2).ceil().toString());
             int count=0;
             return
               ListView.separated(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(10),
                   itemCount: (productX.listOfProducts!.length/2).ceil(),
                   itemBuilder: (BuildContext context, int index) {
                     print(index.toString());
@@ -49,11 +50,17 @@ class ProductsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                       children: [
-                        ProductMini(product: productX.listOfProducts![index*2],),
+                        Obx((){
+                          return
+                            ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2],);
+                        }),
                         if((index*2)+1<=productX.listOfProducts!.length-1)
-                          ProductMini(product: productX.listOfProducts![(index*2)+1],),
+                          Obx((){
+                            return
+                              ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1],);
+                          }),
                         if((index*2)+1>productX.listOfProducts!.length-1)
-                    Container(color: Colors.transparent,height: 300,width:  (MediaQuery.of(context).size.width*0.45),),
+                    Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
                       ],
                     );
                   },

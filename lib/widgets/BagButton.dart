@@ -28,7 +28,7 @@ class BagButton extends StatelessWidget {
         height: 40,
         child: Center(
           child: Text(
-            DefText.addToBag,
+            DefText.addToBag.tr,
             style: AppColor.headlinewhitebol2,
 
           ),

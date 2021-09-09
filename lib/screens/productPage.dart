@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/models/products.dart';
+import 'package:shaikapp/services/LangSelector.dart';
 import 'package:shaikapp/style.dart';
 import 'package:shaikapp/widgets/BagButton.dart';
 import 'package:shaikapp/widgets/ImageLoader.dart';
@@ -15,9 +16,25 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final langSelectorX = Get.put(LangSelector());
+    String analog;
+    String img;
+    List<dynamic> about;
+    if(langSelectorX.istklang.value==false)
+      {
+        analog=product.analog_tk;
+        img=product.img_tk.middle;
+        about=product.about_tk;
+      }
+    else{
+      analog=product.analog_ru;
+      img=product.img_ru.middle;
+      about=product.about_ru;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title:  Text(product.code+' (${product.analog_tk})',style: AppColor.headlinebluegray,),
+        title:  Text(product.code+' (${analog})',style: AppColor.headlinebluegray,),
       ),
         body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -27,9 +44,9 @@ class ProductPage extends StatelessWidget {
             color: Colors.white,
             child: Stack(
               children: [
-                ImageLaoder(url: product.img_tk.middle,),
+                Center(child: ImageLaoder(url: img,)),
                 if(product.status!='OLD')
-                  ProductStatus(status: product.status,),
+                  ProductStatus(status: product.status.tr,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -44,7 +61,7 @@ class ProductPage extends StatelessWidget {
             Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.white,
-                child: Text('SHAIK № '+product.code+' (${product.analog_tk})',style: AppColor.headlinebluegraybold,)
+                child: Text(product.code+' (${analog})',style: AppColor.headlinebluegraybold,)
             ),
             Divider(height: 2,),
             Container(
@@ -99,16 +116,21 @@ class ProductPage extends StatelessWidget {
                     width: 2,
                     color: AppColor.backgroundcolorgrey,
                   ),
+                  productStates(icon: FontAwesomeIcons.heart, count: product.like_count,),
+                  Container(
+                    width: 2,
+                    color: AppColor.backgroundcolorgrey,
+                  ),
                   productStates(icon: FontAwesomeIcons.database, count: product.volume,),
                 ],
               ),
             ),
             Divider(height: 2,),
-            for(int i=0;i<=product.about_tk.length-1;i++)
+            for(int i=0;i<=about.length-1;i++)
               Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.white,
-                  child: Text(product.about_tk[i],style: AppColor.headlinebluegray,)
+                  child: Text(about[i],style: AppColor.headlinebluegray,)
               ),
           ],
         )
@@ -120,23 +142,27 @@ class productStates extends StatelessWidget {
 
   final IconData icon;
   final int count;
-  productStates({required this.icon,required this.count});
+  VoidCallback? onTap;
+  productStates({required this.icon,this.onTap,required this.count});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child:
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-              FaIcon(
-                icon,
-                size: 20,
-                color: AppColor.backgroundcolorgrey,
-              ),
-            Text(count.toString())
-          ],
+        InkWell(
+          onTap: onTap,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                FaIcon(
+                  icon,
+                  size: 20,
+                  color: AppColor.backgroundcolorgrey,
+                ),
+              Text(count.toString())
+            ],
+          ),
         )
     );
   }

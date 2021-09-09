@@ -1,14 +1,65 @@
 import 'package:get/get.dart';
-
+import 'package:shaikapp/consts.dart';
 class AppTranslations extends Translations{
   @override
-  // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
     'ru_RU':{
-      'email':'Почта',
+      'NEW':'Новинка',
+      'STOCKS':'Акция',
+      'DISCOUNT':'Скидка',
+      DefText.homePage:'Главная',
+      DefText.categories:'Категории',
+      DefText.shoppingBag:'Корзина',
+      DefText.favorite:'Избранное',
+      DefText.profile:'Профил',
+      DefText.addToBag:'В корзину',
+      DefText.signin:'Войти',
+      DefText.signout:'Выйти',
+      DefText.language:'Язык',
+      DefText.delivered:'Заказы',
+      DefText.paydelivery:'Условия доставки и оплаты',
+      DefText.sendemail:'Обратная связь',
+      DefText.info:'О нас',
+      DefText.hassendsms:'Введите номер телефона',
+      DefText.enterphonenumberas:'8 значный',
+      DefText.send:'Отправить',
+      DefText.entersendcode:'Введите код',
+      DefText.entercode:'Код',
+      DefText.checkcode:'Проверить',
+      DefText.name:'Имя',
+      DefText.phone:'Телефон',
+      DefText.male:'Мужчина',
+      DefText.famele:'Женщина',
+      DefText.save:'Сохранить',
     },
-    'en_US':{
-      'email':'email',
+    'tk_TK':{
+      'NEW':'Täze',
+      'STOCKS':'Aksiýa',
+      'DISCOUNT':'Arzanladyş',
+      DefText.homePage:'Baş Sahypa',
+      DefText.categories:'Kategoriýalar',
+      DefText.shoppingBag:'Sebet',
+      DefText.favorite:'Halanlarym',
+      DefText.profile:'Profil',
+      DefText.addToBag:'Sebede goş',
+      DefText.signin:'Ulgama girmek',
+      DefText.signout:'Ulgamdan çykmak',
+      DefText.language:'Dil',
+      DefText.delivered:'Sargytlarym',
+      DefText.sendemail:'Habarlaşmak',
+      DefText.info:'Biz barada',
+      DefText.hassendsms:'Telefon belginiz',
+      DefText.enterphonenumberas:'8 belgi',
+      DefText.send:'Ibermek',
+      DefText.entersendcode:'Belga iberilen kod',
+      DefText.entercode:'Kod',
+      DefText.checkcode:'Barla',
+      DefText.name:'Ady',
+      DefText.phone:'Telefon',
+      DefText.male:'Erkek',
+      DefText.paydelivery:'Eltmek we töleg',
+      DefText.famele:'Ayal',
+      DefText.save:'Ýatda sakla',
     }
   };
 

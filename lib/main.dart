@@ -8,11 +8,11 @@ import 'package:shaikapp/translations/Translations.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
-  // DevicePreview(
-  //   enabled: !kReleaseMode,
-  //   builder: (context) =>
+  DevicePreview(
+    enabled: false,
+    builder: (context) =>
         MyApp(), // Wrap your app
-  // ),
+  ),
 );
 
 class MyApp extends StatelessWidget {
@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetMaterialApp(
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       themeMode: ThemeMode.light,
    translations: AppTranslations(),
     initialRoute: 'SplashScreen',

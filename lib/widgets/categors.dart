@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/getX/screenControllerX.dart';
 import 'package:shaikapp/models/category_list.dart';
+import 'package:shaikapp/services/LangSelector.dart';
 
 import '../style.dart';
 import 'CustomExpansionTile.dart';
@@ -15,14 +16,23 @@ class Categories extends StatelessWidget {
   Categories({required this.category});
   @override
   Widget build(BuildContext context) {
+    final langSelectorX = Get.put(LangSelector());
+
     return
       CustomExpansionTile(
        title: Row(
          children: [
+           if(langSelectorX.istklang.value==false)
            Text(
              category.name_tk,
              style: AppColor.headlinebluegray,
            ),
+           if(langSelectorX.istklang.value==true)
+             Text(
+               category.name_ru,
+               style: AppColor.headlinebluegray,
+             ),
+
          ],
        ),
        children: <Widget>[
@@ -47,6 +57,7 @@ class subcategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenControllerX = Get.put(ScreenControllerX());
+    final langSelectorX = Get.put(LangSelector());
 
     return Column(
       //crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +77,8 @@ class subcategory extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                       Text(category.sub_category_list[i].name_tk,style: AppColor.headlinebluegray,),
+                  if(langSelectorX.istklang.value==false)Text(category.sub_category_list[i].name_tk,style: AppColor.headlinebluegray,),
+                  if(langSelectorX.istklang.value==true)Text(category.sub_category_list[i].name_ru,style: AppColor.headlinebluegray,),
                        Container(
                          width: 35,
                            decoration: BoxDecoration(

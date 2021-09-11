@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shaikapp/getX/categoryX.dart';
 import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/getX/screenControllerX.dart';
 import 'package:shaikapp/models/category_list.dart';
@@ -13,13 +14,25 @@ final productX = Get.put(ProductX());
 class Categories extends StatelessWidget {
 
   final CategoryList category;
-  Categories({required this.category});
+  final bool isExpland;
+  Categories({required this.category,required this.isExpland});
   @override
   Widget build(BuildContext context) {
     final langSelectorX = Get.put(LangSelector());
+    final categoryX = Get.put(CategoryGetX());
 
     return
       CustomExpansionTile(
+        onExpansionChanged: (bool){
+          for(int i=0;i<=categoryX.listOfCategory!.value.length-1;i++)
+            {
+              if(categoryX.listOfCategory!.value[i].name_tk==category.name_tk)
+                {
+                 categoryX.CategoryExpland!.value[i]=bool;
+                }
+            }
+        },
+        initiallyExpanded: isExpland,
        title: Row(
          children: [
            if(langSelectorX.istklang.value==false)
@@ -59,12 +72,14 @@ class subcategory extends StatelessWidget {
     final screenControllerX = Get.put(ScreenControllerX());
     final langSelectorX = Get.put(LangSelector());
 
+
     return Column(
       //crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         for(int i=0;i<=category.sub_category_list.length-1;i++)
           InkWell(
             onTap: ()async{
+
               screenControllerX.setIndex(5);
               productX.getProducts(
                   category.sub_category_list[i].id,

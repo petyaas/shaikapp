@@ -25,7 +25,7 @@ class _BUttomNvBarState extends State<BUttomNvBar> {
           iconSize: 20,
           selectedIndex: screenControlX.screenIndex.value,
           onItemSelected: (index) {
-            if(index==1){categoryX.getCategory();}
+            // if(index==1){categoryX.getCategory();}
 
             screenControlX.setIndex(index);
 

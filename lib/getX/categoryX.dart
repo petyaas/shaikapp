@@ -5,19 +5,27 @@ import 'package:shaikapp/services/getData.dart';
 
 class CategoryGetX extends GetxController{
   RxList<CategoryList>? listOfCategory = <CategoryList>[].obs;
+  RxList<bool>? CategoryExpland=<bool>[].obs;
   Rx<xStatus> status=xStatus.empty.obs;
 
 @override
   void onInit() {
-  // getCategory();
+  getCategory();
     super.onInit();
   }
+ void _explanddefoult(int len){
+  for(int i=0;i<=len-1;i++)
+    CategoryExpland!.value.add(false);
+  print('CategoryExpland='+CategoryExpland!.value.length.toString());
+  }
+
   @override
   void getCategory()async{
   status.value=xStatus.loading;
   //TODO try goshmaly
   try{
     listOfCategory!.value=await GetData().getCategoryLIst();
+    _explanddefoult(listOfCategory!.value.length);
     status.value=xStatus.loaded;
   }catch(_){
     status.value=xStatus.empty;

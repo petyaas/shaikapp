@@ -6,11 +6,11 @@ import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/widgets/categors.dart';
 class CategoryScreen extends StatelessWidget {
- const CategoryScreen({Key? key}) : super(key: key);
+ // const CategoryScreen({Key? key}) : super(key: key);
+ final categoryX = Get.put(CategoryGetX());
 
   @override
   Widget build(BuildContext context) {
-   final categoryX = Get.put(CategoryGetX());
 
     return  FadeInRight(
       duration: Duration(milliseconds: 100),
@@ -26,6 +26,7 @@ class CategoryScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return Categories(
                             category: categoryX.listOfCategory!.value[index],
+                            isExpland: categoryX.CategoryExpland!.value[index],
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) => const Divider(),

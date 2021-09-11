@@ -29,7 +29,7 @@ class StartScreen extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async{
-        if(screenControlX.screenIndex.value!=0)
+        if((screenControlX.screenIndex.value!=0)&&(screenControlX.screenIndex.value!=5))
           {screenControlX.setIndex(0);
           return false;
           }

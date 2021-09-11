@@ -109,6 +109,7 @@ class ProfileScreen extends StatelessWidget {
                   {
                     return
                       ButtonCustom(text: DefText.signout.tr, icon: FontAwesomeIcons.signOutAlt, onTap: () {
+
                         profileX.removeProfile();
                       },);
                   }

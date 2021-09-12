@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/services/getData.dart';
 import 'package:shaikapp/services/snackBAr.dart';
@@ -31,7 +32,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('profile',style: AppColor.headlinebluegray,),
+        title: Text(DefText.profile.tr,style: AppColor.headlinebluegray,),
         centerTitle: true,
       ),
         body:
@@ -42,17 +43,40 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
               children: [
                 Column(
                   children: [
-                    Container(
-                      height: 100, width: 100,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            width: 3,
-                            color: AppColor.backgroundcolorgrey,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(100))
-                      ),
-                      child: Icon(FontAwesomeIcons.user,size: 50,color: AppColor.backgroundcolorgrey,),
+                    CircleAvatar(
+                      radius: 52,
+                      backgroundColor: AppColor.backgroundcolorgrey,
+                      child:
+                      Obx((){
+                        if(profileX.user.value.gender==0)
+                        {
+                          return
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 50,
+                              backgroundImage: AssetImage('assets/icons/male.png'),
+                            );
+                        }
+                        if(profileX.user.value.gender==1)
+                        {
+                          return
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 50,
+                              backgroundImage: AssetImage('assets/icons/famale.png'),
+                            );
+                        }
+                        if(profileX.user.value.gender==-1)
+                        {
+                          return
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 50,
+                              // backgroundImage: AssetImage('assets/icons/famale.png'),
+                            );
+                        }
+                        return Text('some error..');
+                      }),
                     ),
                   ],
                 ),
@@ -60,7 +84,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
                 CustomTextField(
                   controller: _namecontroller,
                   hint: profileX.user.value.client_name,
-                  helperText: 'name',
+                  helperText: DefText.name.tr,
                   keybord: TextInputType.name,
                   // onchange: (text)
                   // {
@@ -72,7 +96,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
                 Divider(),
                 CustomTextField(
                   enabled: false,
-                  helperText: 'phone',
+                  helperText: DefText.phone.tr,
                   controller: _phonecontroller,
                   // hint: profileX.user.value.phone,
                   keybord: TextInputType.number,
@@ -120,30 +144,31 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
                   children: [
                     Expanded(child: Container(),),
                     Expanded(
+                      flex: 2,
                       child: ButtonCustom(
-                        text: 'save',align: TextAlign.center, icon: FontAwesomeIcons.save,
+                        text: DefText.save.tr,align: TextAlign.center, icon: FontAwesomeIcons.save,
                         onTap: ()async{
                           profileX.user.value.client_name=_namecontroller.text;
 
-                          print(_namecontroller.text);
+                          // print(_namecontroller.text);
                           profileX.user.value.addres.add('Ahsha ajksd jasd');
                           profileX.user.value.addres.add('Ahsha ajksd jasd');
-                          print(profileX.user.value.client_name);
-                          print(profileX.user.value.addres);
-                          print(profileX.user.value.gender);
-                          print(profileX.user.value.phone);
-                          print(profileX.user.value.id);
+                          // print(profileX.user.value.client_name);
+                          // print(profileX.user.value.addres);
+                          // print(profileX.user.value.gender);
+                          // print(profileX.user.value.phone);
+                          // print(profileX.user.value.id);
                           if(await GetData().editProfile(profileX.user.value)==true)
                             {
                               // profileX.user.value.client_name=_namecontroller.text;
                               profileX.editProfile(profileX.user.value);
                               Get.back();
-                              ShowSnackBar('SHAIK','editprofiletrue');
+                              ShowSnackBar('SHAIK',DefText.editprofiletrue.tr);
                             }
                           else
                             {
                               Get.back();
-                              ShowSnackBar('SHAIK','editprofilefalse');
+                              ShowSnackBar('SHAIK',DefText.editprofilefalse.tr);
                             }
                         },                ),
                     ),

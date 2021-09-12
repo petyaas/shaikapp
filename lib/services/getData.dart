@@ -113,6 +113,24 @@ class GetData {
 
    return _temp!.map((json) => Products.fromJson(json)).toList();
  }
+
+ Future<List<Products>> getListById(List<dynamic> listOfIds)async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   List<dynamic>? _temp;
+   FormData formData;
+   formData=FormData.fromMap({
+     'id_list':jsonEncode(listOfIds),
+   });
+   _response=await _postData(ApiLinks.listById, formData, '');
+   _map=_response.data;
+   _temp=_map['data'];
+
+   // if(_temp[0]['total']!=0){_temp=_temp[0]['products'];}else{_temp=[];}
+
+   return _temp!.map((json) => Products.fromJson(json)).toList();
+ }
+
  Future<List<dynamic>?> getLikeList(String clientId)async{
    Response? _response;
    Map<String, dynamic> _map;

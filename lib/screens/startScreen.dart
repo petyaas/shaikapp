@@ -15,6 +15,7 @@ import '../style.dart';
 import 'HomeScreen.dart';
 import 'ProfilsScreen.dart';
 import 'categoryScreen.dart';
+import 'likedScreen.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -77,7 +78,7 @@ class StartScreen extends StatelessWidget {
             if(screenControlX.screen.value==xScreen.liked)
               {
                 return
-                  Center(child: Text('liked'),);
+                  LikedScreen();
               }
             if(screenControlX.screen.value==xScreen.profil)
               {

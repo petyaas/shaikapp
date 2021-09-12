@@ -79,7 +79,6 @@ class subcategory extends StatelessWidget {
         for(int i=0;i<=category.sub_category_list.length-1;i++)
           InkWell(
             onTap: ()async{
-
               screenControllerX.setIndex(5);
               productX.getProducts(
                   category.sub_category_list[i].id,

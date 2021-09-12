@@ -23,6 +23,12 @@ class DefText{
   static String male='male';
   static String famele='famele';
   static String save='save';
+  static String yes='yes';
+  static String cancel='cancel';
+  static String editprofiletrue='editprofiletrue';
+  static String editprofilefalse='editprofilefalse';
+  static String signoutalert='signoutalert';
+  static String alert='alert';
 }
 class ApiLinks{
   static String host='https://shaik.shop/';
@@ -34,4 +40,5 @@ class ApiLinks{
   static String editProfile='api/v1/client/update';
   static String likeSet='api/v1/product/like-set';
   static String likeListGet='api/v1/client/like-list';
+  static String listById='api/v1/product/list-ids';
 }

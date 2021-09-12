@@ -28,18 +28,26 @@ class ProfileView extends StatelessWidget {
         // padding: EdgeInsets.all(10),
         child: Row(
           children: [
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 70, width: 70,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 3,
-                    color: AppColor.backgroundcolorgrey,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(100))
+            if(profile.gender==0)
+              CircleAvatar(
+                radius: 52,
+                backgroundColor: AppColor.backgroundcolorgrey,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/icons/male.png'),
+                ),
               ),
-              child: Icon(FontAwesomeIcons.user,size: 30,color: AppColor.backgroundcolorgrey,),
-            ),
+            if(profile.gender==1)
+              CircleAvatar(
+                radius: 52,
+                backgroundColor: AppColor.backgroundcolorgrey,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/icons/famale.png'),
+                ),
+              ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

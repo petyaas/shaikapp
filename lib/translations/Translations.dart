@@ -31,6 +31,12 @@ class AppTranslations extends Translations{
       DefText.male:'Мужчина',
       DefText.famele:'Женщина',
       DefText.save:'Сохранить',
+      DefText.yes:'Да',
+      DefText.cancel:'Отмена',
+      DefText.alert:'Внимание',
+      DefText.signoutalert:'Вы действительно хотите выйти из акаунта?',
+      DefText.editprofiletrue:'Изменения сохранены!!!',
+      DefText.editprofilefalse:'Ошибка!!!',
     },
     'tk_TK':{
       'NEW':'Täze',
@@ -60,6 +66,12 @@ class AppTranslations extends Translations{
       DefText.paydelivery:'Eltmek we töleg',
       DefText.famele:'Ayal',
       DefText.save:'Ýatda sakla',
+      DefText.yes:'Hawa',
+      DefText.cancel:'Goýbolsyn',
+      DefText.alert:'Duýduryş',
+      DefText.signoutalert:'Siz hakykatdanam ulgamdan çykmakçymy?',
+      DefText.editprofiletrue:'Ýatda saklandy!!!',
+      DefText.editprofilefalse:'Ýalňyşlyk!!!',
     }
   };
 

@@ -109,8 +109,21 @@ class ProfileScreen extends StatelessWidget {
                   {
                     return
                       ButtonCustom(text: DefText.signout.tr, icon: FontAwesomeIcons.signOutAlt, onTap: () {
+                        Get.defaultDialog(
+                          textConfirm: DefText.yes.tr,
+                          textCancel: DefText.cancel.tr,
+                          buttonColor: AppColor.backgroundcolor,
+                          backgroundColor: AppColor.backgroundcolor,
+                          onConfirm: () {
+                            profileX.removeProfile();
+                            Get.back();
+                          },
+                          title: DefText.alert.tr,
+                          titleStyle: AppColor.headlinewhitelight,
+                          content:
+                            Text(DefText.signoutalert.tr,style: AppColor.headlinewhitelight1,)
+                        );
 
-                        profileX.removeProfile();
                       },);
                   }
 

@@ -12,6 +12,7 @@ class ProductX extends GetxController{
   RxList<bool>? likeProduct = <bool>[].obs;
   Rx<xStatus> productStatus=xStatus.empty.obs;
   Rx<xStatus> likeStatus=xStatus.empty.obs;
+  Rx<xStatus> byListIdStatus=xStatus.empty.obs;
   RxList<dynamic> likeList=<dynamic>[].obs;
 
   // @override
@@ -24,11 +25,23 @@ class ProductX extends GetxController{
   void getProducts(String sub_category_id,int begin,int end)async{
     productStatus.value=xStatus.loading;
     try{
-    listOfProducts!.value=await GetData().getProductLIst(sub_category_id, begin, end);
-    checkLike();
-    productStatus.value=xStatus.loaded;
+      listOfProducts!.value=await GetData().getProductLIst(sub_category_id, begin, end);
+      checkLike();
+      productStatus.value=xStatus.loaded;
     }catch(_){
       productStatus.value=xStatus.empty;
+    }
+  }
+  @override
+  void getByListId(List<dynamic> listOfId)async{
+    print('listOfId'+listOfId.length.toString());
+    byListIdStatus.value=xStatus.loading;
+    try{
+      listOfProducts!.value=await GetData().getListById(listOfId);
+      checkLike();
+      byListIdStatus.value=xStatus.loaded;
+    }catch(_){
+      byListIdStatus.value=xStatus.empty;
     }
   }
   @override
@@ -57,6 +70,7 @@ class ProductX extends GetxController{
         likeList.value.add(productId);
       }
       checkLike();
+      // getByListId(likeList.value);
       likeStatus.value = xStatus.loading;
       try {
         await GetData().likeSet(productId, clientId);

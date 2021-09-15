@@ -13,6 +13,7 @@ import 'package:shaikapp/widgets/ButtonCustom.dart';
 import 'package:shaikapp/widgets/ProfileView.dart';
 
 import '../consts.dart';
+import 'PayAndDelivery.dart';
 class ProfileScreen extends StatelessWidget {
 
   @override
@@ -100,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
 
                 ButtonCustom(text: DefText.paydelivery.tr, icon: FontAwesomeIcons.bars, onTap: () {
-                  print('pat');
+                  Get.to(PayAndDelivery());
 
                 },),
                 ButtonCustom(text: DefText.sendemail.tr, icon: FontAwesomeIcons.envelope, onTap: () {  },),
@@ -112,16 +113,18 @@ class ProfileScreen extends StatelessWidget {
                         Get.defaultDialog(
                           textConfirm: DefText.yes.tr,
                           textCancel: DefText.cancel.tr,
-                          buttonColor: AppColor.backgroundcolor,
-                          backgroundColor: AppColor.backgroundcolor,
+                          confirmTextColor: AppColor.backgroundcolorgrey,
+                          cancelTextColor: AppColor.backgroundcolorgrey,
+                          buttonColor: Colors.white,
+                          backgroundColor: Color(0xFFF2F2F2),
                           onConfirm: () {
                             profileX.removeProfile();
                             Get.back();
                           },
                           title: DefText.alert.tr,
-                          titleStyle: AppColor.headlinewhitelight,
+                          titleStyle: AppColor.headlinebluegray,
                           content:
-                            Text(DefText.signoutalert.tr,style: AppColor.headlinewhitelight1,)
+                            Text(DefText.signoutalert.tr,style: AppColor.headlinebluegray,)
                         );
 
                       },);

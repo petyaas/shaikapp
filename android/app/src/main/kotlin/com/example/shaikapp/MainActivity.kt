@@ -1,4 +1,4 @@
-package com.example.shaikapp
+package shop.shaik.shaikapp
 
 import io.flutter.embedding.android.FlutterActivity
 

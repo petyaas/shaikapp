@@ -29,6 +29,14 @@ class DefText{
   static String editprofilefalse='editprofilefalse';
   static String signoutalert='signoutalert';
   static String alert='alert';
+  static String payDelivery1='payDelivery1';
+  static String payDelivery2='payDelivery2';
+  static String payDelivery3='payDelivery3';
+  static String payDelivery4='payDelivery4';
+  static String payDelivery5='payDelivery5';
+  static String payDelivery6='payDelivery6';
+  static String payDelivery7='payDelivery7';
+  static String payDelivery8='payDelivery8';
 }
 class ApiLinks{
   static String host='https://shaik.shop/';

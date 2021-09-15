@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shaikapp/router.dart';
@@ -6,14 +7,18 @@ import 'package:get/get.dart';
 import 'package:shaikapp/translations/Translations.dart';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(
-  DevicePreview(
-    enabled: false,
-    builder: (context) =>
-        MyApp(), // Wrap your app
-  ),
-);
+ main() async{
+
+  runApp(
+    DevicePreview(
+      enabled: false,
+      builder: (context) =>
+          MyApp(), // Wrap your app
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shaikapp/screens/startScreen.dart';
@@ -15,7 +16,10 @@ class _SplashScreenState extends State<SplashScreen> {
   String navigatepage='StartScreen';
   void initState()  {
     super.initState();
+
+
     _loadWidget();
+
   }
   _loadWidget() async {
     var _duration = Duration(seconds: splashDelay);

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shaikapp">
+    package="shop.shaik.shaikapp">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
    <application
@@ -43,6 +43,10 @@
            android:permission="android.permission.BROADCAST_SMS" android:exported="true">
            <intent-filter>
                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+           </intent-filter>
+           <intent-filter>
+               <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+               <category android:name="android.intent.category.DEFAULT" />
            </intent-filter>
        </receiver>
     </application>

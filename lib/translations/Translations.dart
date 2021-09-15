@@ -37,6 +37,14 @@ class AppTranslations extends Translations{
       DefText.signoutalert:'Вы действительно хотите выйти из акаунта?',
       DefText.editprofiletrue:'Изменения сохранены!!!',
       DefText.editprofilefalse:'Ошибка!!!',
+      DefText.payDelivery1:'На данный момент доставка предоставляется по городу Ашхабад;',
+      DefText.payDelivery2:'Если сумма заказа превысит 150 манат, доставка бесплатно;',
+      DefText.payDelivery3:'Услуга доставки выполняется по указанному Вами адресу и номеру телефона;',
+      DefText.payDelivery4:'После Вашего заказа, оператор позвонит Вам для подтверждения заказа;',
+      DefText.payDelivery5:'Если заказ не подтверждается, то данный заказ не регестрируется и не выполняется;',
+      DefText.payDelivery6:'Заказы принятые между 08:00 - 18:00 доставляются в тот же день, заказы принятые после 18:00 доставляются на следующий день.',
+      DefText.payDelivery7:'После того, как Вы проверите и примите заказ, оплата выполняется наличными в национальной валюте.',
+      DefText.payDelivery8:'Принятый и оплаченный товар возврату не подлежит;',
     },
     'tk_TK':{
       'NEW':'Täze',
@@ -72,6 +80,14 @@ class AppTranslations extends Translations{
       DefText.signoutalert:'Siz hakykatdanam ulgamdan çykmakçymy?',
       DefText.editprofiletrue:'Ýatda saklandy!!!',
       DefText.editprofilefalse:'Ýalňyşlyk!!!',
+      DefText.payDelivery1:'Harytlary eltip bermek hyzmaty häzirki wagtda Aşgabat şäheri boýunça amala aşyrylýar;',
+      DefText.payDelivery2:'Her bir sargydyňyzyň bahasy 150 manatdan geçse, eltip bermek hyzmaty mugt;',
+      DefText.payDelivery3:'Eltip bermek hyzmaty girizen salgyňyz we telefon belgiňiz esasynda amala aşyrylýar;',
+      DefText.payDelivery4:'Sargyt edeniňizden soňra operator size jaň edip sargydy tassyklar;',
+      DefText.payDelivery5:'Sargyt tassyklanmadyk ýagdaýynda ol hasaba alynmaýar we ýerine ýetirilmeýär;',
+      DefText.payDelivery6:'08:00 - 18:00 aralygynda edilen sargytlar şol gün eltilýär, 18:00-dan soňky edilen sargytlar bolsa ertesi gün size gowşurylar',
+      DefText.payDelivery7:'Sargydy barlap alanyňyzdan soňra töleg nagt görnüşde milli manatda amala aşyrylýar;',
+      DefText.payDelivery8:'Kabul edip tölegini geçiren harydyňyz yzyna alynmaýar.',
     }
   };
 

@@ -9,7 +9,7 @@ import 'package:shaikapp/services/getData.dart';
 
 import 'events.dart';
 
-class ProfileX extends GetxController{
+  class ProfileX extends GetxController{
   LocalStorage _storage = LocalStorage();
   Rx<xStatus> status=xStatus.empty.obs;
   final  user=ClientProfile(id: '', client_name: '', gender: -1, phone: '', addres: [], status: '', create_ts: '', update_ts: '').obs;

@@ -1,11 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:shaikapp/consts.dart';
+import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/getX/productX.dart';
+import 'package:shaikapp/style.dart';
+import 'package:shaikapp/widgets/iconMessage.dart';
 import 'package:shaikapp/widgets/productMini.dart';
 class LikedScreen extends StatelessWidget {
   final productX = Get.put(ProductX());
+  final profileX = Get.put(ProfileX());
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +19,13 @@ class LikedScreen extends StatelessWidget {
     return FadeInDownBig(
         duration: Duration(milliseconds: 100),
         child: Obx((){
-          if(productX.byListIdStatus.value==xStatus.empty){
-            return Text('Some Error...');
+          if((productX.byListIdStatus.value==xStatus.empty)){
+            if(profileX.user.value.phone=='')
+            {return IconMessage(icon:FontAwesomeIcons.signInAlt,text:DefText.signinpls.tr);}
+            else{
+              return IconMessage(icon:FontAwesomeIcons.heart,text:DefText.emptyLikeList.tr);
+            }
+
           }
           if(productX.byListIdStatus.value==xStatus.loading){
             return Center(child: CircularProgressIndicator(),);
@@ -53,7 +64,7 @@ class LikedScreen extends StatelessWidget {
               );
             //ProductMini(product: productX.listOfProducts![0],);
           }
-          return Text('Some Error...');
+          return Center(child: Text('Error...'));
         }),
     );
   }

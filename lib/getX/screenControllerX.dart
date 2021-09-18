@@ -7,51 +7,53 @@ class ScreenControllerX extends GetxController{
   Rx<xScreen> screen=xScreen.homepage.obs;
   RxInt screenIndex=0.obs;
   RxString testString='init'.obs;
-  final FirebaseMessaging fm = FirebaseMessaging as FirebaseMessaging;
-  Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-    if((message!=null)&&(message.notification!.body=='dada'))
-    {
-      testString.value=message.notification!.body!;
-      setIndex(3);
-    }
-    print("onBackgroundMessage: $message");
-  }
+  // final FirebaseMessaging fm = FirebaseMessaging as FirebaseMessaging;
+  // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  //   if((message!=null)&&(message.notification!.body=='dada'))
+  //   {
+  //     testString.value=message.notification!.body!;
+  //     setIndex(3);
+  //   }
+  //   print("onBackgroundMessage: $message");
+  // }
 
   @override
   void onInit() async{
-    inis();
-    startFirebase();
+    // inis();
+    // startFirebase();
     super.onInit();
   }
-  void inis()async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-  }
-  void startFirebase()async{
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print("message recieved");
-      print(event.notification!.body);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print('Message clicked!'+message.toString());
-      testString.value=message.notification!.body!;
-      if((message.notification!.body=='dada'))
-      {
-
-        setIndex(3);
-      }
-
-    });
-
-  }
+  // void inis()async {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   await Firebase.initializeApp();
+  //   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  //   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //     alert: true,
+  //     badge: true,
+  //     sound: true,
+  //   );
+  //
+  // }
+  // void startFirebase()async{
+  //
+  //   FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+  //     print("message recieved");
+  //     print(event.notification!.body);
+  //   });
+  //   FirebaseMessaging.onMessageOpenedApp.listen((message)async {
+  //     RemoteMessage? initialMessage =
+  //     await FirebaseMessaging.instance.getInitialMessage();
+  //     testString.value=initialMessage!.notification!.body!;
+  //     print('Message clicked!'+message.toString());
+  //     if((message.notification!.body=='dada'))
+  //     {
+  //
+  //       setIndex(3);
+  //     }
+  //
+  //   });
+  //
+  // }
 
   void setIndex(int index){
     if(index==0){

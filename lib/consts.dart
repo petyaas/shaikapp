@@ -37,6 +37,8 @@ class DefText{
   static String payDelivery6='payDelivery6';
   static String payDelivery7='payDelivery7';
   static String payDelivery8='payDelivery8';
+  static String signinpls='signinpls';
+  static String emptyLikeList='emptyLikeList';
 }
 class ApiLinks{
   static String host='https://shaik.shop/';

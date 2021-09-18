@@ -45,6 +45,8 @@ class AppTranslations extends Translations{
       DefText.payDelivery6:'Заказы принятые между 08:00 - 18:00 доставляются в тот же день, заказы принятые после 18:00 доставляются на следующий день.',
       DefText.payDelivery7:'После того, как Вы проверите и примите заказ, оплата выполняется наличными в национальной валюте.',
       DefText.payDelivery8:'Принятый и оплаченный товар возврату не подлежит;',
+      DefText.signinpls:'Войдите в акаунт!!!!.',
+      DefText.emptyLikeList:'Еще не добавлено!!!!.',
     },
     'tk_TK':{
       'NEW':'Täze',
@@ -88,6 +90,8 @@ class AppTranslations extends Translations{
       DefText.payDelivery6:'08:00 - 18:00 aralygynda edilen sargytlar şol gün eltilýär, 18:00-dan soňky edilen sargytlar bolsa ertesi gün size gowşurylar',
       DefText.payDelivery7:'Sargydy barlap alanyňyzdan soňra töleg nagt görnüşde milli manatda amala aşyrylýar;',
       DefText.payDelivery8:'Kabul edip tölegini geçiren harydyňyz yzyna alynmaýar.',
+      DefText.signinpls:'Ulgama girmeli!!!.',
+      DefText.emptyLikeList:'Haryt goşulmadyk!!!',
     }
   };
 

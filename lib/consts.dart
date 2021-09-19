@@ -29,6 +29,7 @@ class DefText{
   static String editprofilefalse='editprofilefalse';
   static String signoutalert='signoutalert';
   static String alert='alert';
+  static String alertdeleteBag='alertdeleteBag';
   static String payDelivery1='payDelivery1';
   static String payDelivery2='payDelivery2';
   static String payDelivery3='payDelivery3';
@@ -39,6 +40,9 @@ class DefText{
   static String payDelivery8='payDelivery8';
   static String signinpls='signinpls';
   static String emptyLikeList='emptyLikeList';
+  static String emptyBagList='emptyBagList';
+  static String unknownError='unknownError';
+  static String tryAgainError='tryAgainError';
 }
 class ApiLinks{
   static String host='https://shaik.shop/';
@@ -51,4 +55,7 @@ class ApiLinks{
   static String likeSet='api/v1/product/like-set';
   static String likeListGet='api/v1/client/like-list';
   static String listById='api/v1/product/list-ids';
+  static String bagListGet='api/v1/client/basket/list';
+  static String addToBag='api/v1/client/basket/add';
+  static String deleteFromBag='api/v1/client/basket/delete';
 }

@@ -43,6 +43,7 @@ void setClientName(String name){
         _storage.setCurrentUser(userToMap);
         user.value = userProfile;
         productX.getLikeList(user.value.id);
+        productX.getBagList(user.value.id);
         if(user.value.phone!='')
           {
             isUserLoad.value=true;
@@ -70,6 +71,7 @@ void setClientName(String name){
      print('getetprofil-'+map.toString());
       user.value = ClientProfile.fromJson(map);
       productX.getLikeList(user.value.id);
+      productX.getBagList(user.value.id);
       isUserLoad.value=true;
     }else
     {
@@ -83,7 +85,9 @@ void setClientName(String name){
 
   removeProfile() async {
     user.value=ClientProfile.emptyProf();
-    user.refresh();
+    productX.likeList.value=[];
+    productX.bagList.value=[];
+    user.refresh(); productX.likeList.refresh(); productX.bagList.refresh();
     isUserLoad.value=false;
     await _storage.removeCurrentUser();
   }

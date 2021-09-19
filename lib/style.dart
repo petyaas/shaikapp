@@ -25,6 +25,7 @@ class AppColor {
         fontWeight: FontWeight.w500,fontFamily: "Euclid");
  static const TextStyle headlinegoldlight=TextStyle(color: AppColor.gold,fontWeight: FontWeight.w300,fontSize: 14,fontFamily: "Euclid");
   static const TextStyle headlinewhite=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 24,letterSpacing: 0,fontFamily: "Euclid");
+  static const TextStyle badgewhite=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 12,letterSpacing: 0,fontFamily: "Euclid");
   static const TextStyle miniwhite=TextStyle(color: AppColor.white,fontWeight: FontWeight.w500,fontSize: 14,letterSpacing: 0,fontFamily: "Euclid");
   static const TextStyle headlinegrey=TextStyle(color: AppColor.grey,fontWeight: FontWeight.w500,fontSize: 12,height: 2,fontFamily: "Euclid");
   static const TextStyle headlinegreylight=TextStyle(color: AppColor.laghtBlueGray,fontWeight: FontWeight.w500,fontSize: 12,height: 2,fontFamily: "Euclid");

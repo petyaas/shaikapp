@@ -12,6 +12,7 @@ import 'package:shaikapp/services/LangSelector.dart';
 import 'package:shaikapp/widgets/buttom_nav_bar.dart';
 
 import '../style.dart';
+import 'BagScreen.dart';
 import 'HomeScreen.dart';
 import 'ProfilsScreen.dart';
 import 'categoryScreen.dart';
@@ -73,7 +74,7 @@ class StartScreen extends StatelessWidget {
             if(screenControlX.screen.value==xScreen.shopbag)
               {
                 return
-                  Center(child: Text('shopbag'),);
+                  BagScreen();
               }
             if(screenControlX.screen.value==xScreen.liked)
               {

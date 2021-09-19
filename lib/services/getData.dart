@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shaikapp/consts.dart';
 import 'package:dio/dio.dart';
+import 'package:shaikapp/models/bag_list.dart';
 import 'package:shaikapp/models/category_list.dart';
 
 import 'package:shaikapp/models/clientProfile.dart';
@@ -95,6 +96,28 @@ class GetData {
    print('likeSet-'+_response.data);
    return true;
  }
+ Future<bool> addToBag(String productId,String clientId,int count)async{
+   FormData formData;
+   Response? _response;
+   formData=FormData.fromMap({
+     'product_id':productId,
+     'client_id':clientId,
+     'count':count,
+   });
+   _response= await _postData(ApiLinks.addToBag, formData, '');
+   print('likeSet-'+_response.data);
+   return true;
+ }
+ Future<bool> deleteFromBag(String productId,String clientId)async{
+   FormData formData;
+   Response? _response;
+   formData=FormData.fromMap({
+     'product_id':productId,
+     'client_id':clientId,
+   });
+   _response= await _postData(ApiLinks.deleteFromBag, formData, '');
+   return true;
+ }
 
  Future<List<Products>> getProductLIst(String sub_category_id,int begin,int end)async{
    Response? _response;
@@ -130,7 +153,7 @@ class GetData {
 
    return _temp!.map((json) => Products.fromJson(json)).toList();
  }
-
+//GetALlLikeList data-client_id->productids
  Future<List<dynamic>?> getLikeList(String clientId)async{
    Response? _response;
    Map<String, dynamic> _map;
@@ -148,6 +171,24 @@ class GetData {
    temp=_map['data']['product_id_list'];
    print('temp='+temp.toString());
    return temp;
+ }
+ Future<List<BagList>?> getBagList(String clientId)async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   List<dynamic>? temp=[];
+   FormData formData;
+   formData=FormData.fromMap({
+     'client_id':clientId,
+   });
+   _response=await _postData(ApiLinks.bagListGet, formData, '');
+   print(_response.data);
+   _map=_response.data;
+
+   print(_map['data']);
+
+   temp=_map['data'];
+   // print('temp='+temp.toString());
+   return temp!.map((json) => BagList.fromJson(json)).toList();
  }
 
   Future<Response> _postData(

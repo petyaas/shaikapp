@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shaikapp/models/bag_list.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/services/getData.dart';
 
@@ -14,6 +15,8 @@ class ProductX extends GetxController{
   Rx<xStatus> likeStatus=xStatus.empty.obs;
   Rx<xStatus> byListIdStatus=xStatus.empty.obs;
   RxList<dynamic> likeList=<dynamic>[].obs;
+  RxList<BagList> bagList=<BagList>[].obs;
+  Rx<xStatus> bagListStatus=xStatus.empty.obs;
 
   // @override
   // void onInit() {
@@ -41,7 +44,23 @@ class ProductX extends GetxController{
       checkLike();
       byListIdStatus.value=xStatus.loaded;
     }catch(_){
-      byListIdStatus.value=xStatus.empty;
+      byListIdStatus.value=xStatus.error;
+    }
+  }
+  @override
+  void getBagByListId(List<dynamic> listOfId)async{
+    List<dynamic> _temp=[];
+    listOfId.forEach((element) {
+      _temp.add(element.product_id);
+    });
+    print('listOfId'+_temp.length.toString());
+    byListIdStatus.value=xStatus.loading;
+    try{
+      listOfProducts!.value=await GetData().getListById(_temp);
+      checkLike();
+      byListIdStatus.value=xStatus.loaded;
+    }catch(_){
+      byListIdStatus.value=xStatus.error;
     }
   }
   @override
@@ -52,7 +71,18 @@ class ProductX extends GetxController{
       likeStatus.value=xStatus.loaded;
       checkLike();
     }catch(_){
-      likeStatus.value=xStatus.empty;
+      likeStatus.value=xStatus.error;
+    }
+  }
+  @override
+  void getBagList(String clientId)async{
+    bagListStatus.value=xStatus.loading;
+    try{
+      bagList.value=(await GetData().getBagList(clientId))!;
+      bagListStatus.value=xStatus.loaded;
+      checkLike();
+    }catch(_){
+      bagListStatus.value=xStatus.error;
     }
   }
 
@@ -69,11 +99,52 @@ class ProductX extends GetxController{
       if (_isFind == false) {
         likeList.value.add(productId);
       }
+      likeList.refresh();
+
       checkLike();
       // getByListId(likeList.value);
       likeStatus.value = xStatus.loading;
       try {
         await GetData().likeSet(productId, clientId);
+        getLikeList(clientId);
+        likeStatus.value = xStatus.loaded;
+      } catch (_) {
+        likeStatus.value = xStatus.empty;
+      }
+    }
+  }
+  void deleteFromBAg(String clientId,String productId)async{
+      likeStatus.value = xStatus.loading;
+      try {
+        await GetData().deleteFromBag(productId, clientId);
+        getLikeList(clientId);
+        likeStatus.value = xStatus.loaded;
+      } catch (_) {
+        likeStatus.value = xStatus.empty;
+      }
+    }
+
+
+  void addBag(String clientId,String productId,int count)async{
+    if(clientId!=''){
+      bool _isFind = false;
+      for (int i = 0; i <= bagList.value.length - 1; i++) {
+        if (bagList.value[i].product_id == productId) {
+          bagList.value[i].count=count;
+          _isFind = true;
+          break;
+        }
+      }
+      if (_isFind == false) {
+        bagList.value.add(BagList(product_id: productId, count: count));
+      }
+      bagList.refresh();
+
+      // checkLike();
+      // getByListId(likeList.value);
+      likeStatus.value = xStatus.loading;
+      try {
+        await GetData().addToBag(productId, clientId,count);
         getLikeList(clientId);
         likeStatus.value = xStatus.loaded;
       } catch (_) {

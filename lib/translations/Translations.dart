@@ -35,6 +35,7 @@ class AppTranslations extends Translations{
       DefText.cancel:'Отмена',
       DefText.alert:'Внимание',
       DefText.signoutalert:'Вы действительно хотите выйти из акаунта?',
+      DefText.alertdeleteBag:'Удалить продукт из корзины?',
       DefText.editprofiletrue:'Изменения сохранены!!!',
       DefText.editprofilefalse:'Ошибка!!!',
       DefText.payDelivery1:'На данный момент доставка предоставляется по городу Ашхабад;',
@@ -47,6 +48,9 @@ class AppTranslations extends Translations{
       DefText.payDelivery8:'Принятый и оплаченный товар возврату не подлежит;',
       DefText.signinpls:'Войдите в акаунт!!!!.',
       DefText.emptyLikeList:'Еще не добавлено!!!!.',
+      DefText.emptyBagList:'Корзина пуста!!!',
+      DefText.unknownError:'Ошибка связи!',
+      DefText.tryAgainError:'Повторите еще!'
     },
     'tk_TK':{
       'NEW':'Täze',
@@ -80,6 +84,7 @@ class AppTranslations extends Translations{
       DefText.cancel:'Goýbolsyn',
       DefText.alert:'Duýduryş',
       DefText.signoutalert:'Siz hakykatdanam ulgamdan çykmakçymy?',
+      DefText.alertdeleteBag:'Harydy sebetden aýyrmakçymy?',
       DefText.editprofiletrue:'Ýatda saklandy!!!',
       DefText.editprofilefalse:'Ýalňyşlyk!!!',
       DefText.payDelivery1:'Harytlary eltip bermek hyzmaty häzirki wagtda Aşgabat şäheri boýunça amala aşyrylýar;',
@@ -92,6 +97,9 @@ class AppTranslations extends Translations{
       DefText.payDelivery8:'Kabul edip tölegini geçiren harydyňyz yzyna alynmaýar.',
       DefText.signinpls:'Ulgama girmeli!!!.',
       DefText.emptyLikeList:'Haryt goşulmadyk!!!',
+      DefText.emptyBagList:'Sebede haryt goşylmadyk!!!',
+      DefText.unknownError:'Internet näsazlygy!',
+      DefText.tryAgainError:'Gaýtadan synanşyp göriň!'
     }
   };
 

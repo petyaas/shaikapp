@@ -41,7 +41,7 @@ dependencies:
   telephony: ^0.1.4
   circular_countdown_timer: ^0.2.0
   #state_manager:
-  get: ^4.3.4
+  get: ^4.3.8
   #firebase
   firebase_core: ^1.6.0
   firebase_analytics: ^8.3.2

@@ -22,16 +22,16 @@ class HomeScreen extends StatelessWidget {
                     child: CoruselImages()),
                 InkWell(
                   onTap: ()async{
-                    messaging = FirebaseMessaging.instance;
-                   String ss='';
-
-                    print('gettoken');
-                   ss=(await messaging.getToken())!;
-                  print(ss);
-                    messaging.getToken().then((value){
-                      print('gettoken111');
-                      print(value);
-                    });
+                  //   messaging = FirebaseMessaging.instance;
+                  //  String ss='';
+                  //
+                  //   print('gettoken');
+                  //  ss=(await messaging.getToken())!;
+                  // print(ss);
+                  //   messaging.getToken().then((value){
+                  //     print('gettoken111');
+                  //     print(value);
+                  //   });
                   },
                  child:
                      Obx((){

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -31,7 +32,7 @@ import '../style.dart';
         child: Row(
           children: [
             Container(width: 50, child: Icon(icon,color: AppColor.backgroundcolorgrey,)),
-            Expanded(child: Text(text,style: AppColor.headlinebluegray,textAlign: align != null?align:TextAlign.start)),
+            Expanded(child: AutoSizeText(text,style: AppColor.headlinebluegray,minFontSize: 8,maxLines: 1,textAlign: align != null?align:TextAlign.start)),
             if(actions!=null) actions!,
           ],
         ),

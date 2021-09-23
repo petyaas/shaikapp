@@ -8,6 +8,7 @@ import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/screens/productPage.dart';
 import 'package:shaikapp/services/LangSelector.dart';
+import 'package:shaikapp/services/snackBAr.dart';
 import 'package:shaikapp/widgets/ImageLoader.dart';
 import 'package:shaikapp/widgets/productLike.dart';
 
@@ -45,7 +46,9 @@ class ProductMini extends StatelessWidget {
       Stack(
         children: [
           InkWell(
-            onTap: (){Get.to(ProductPage(product: product,));},
+            onTap: (){
+              Get.to(()=>ProductPage(product: product, isliked:isliked,));
+              },
             child: Column(
               children: [
                 if(langSelectorX.istklang.value==false)Expanded(
@@ -119,7 +122,12 @@ class ProductMini extends StatelessWidget {
           // if(product.status!='OLD')
           ProductStatus(status: product.status.tr,),
                  ProductLike(isLiked: isliked,
-                 onTap: (){productX.setLike(profileX.user.value.id, product.id);},),
+                 onTap: (){
+                   if(profileX.user.value.id!='')
+                   { productX.setLike(profileX.user.value.id, product.id);}
+                   else{ShowSnackBar(DefText.alert.tr,DefText.signinpls.tr);}
+
+                   },),
 
         ],
       ),

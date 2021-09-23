@@ -49,7 +49,7 @@ TextEditingController _codecontroller=new TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(DefText.signin,style: AppColor.headlinebluegray,),
+        title: Text(DefText.signin.tr,style: AppColor.headlinebluegray,),
         centerTitle: true,
       ),
       body: Column(

@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
             print('usUserLoad'+profileX.isUserLoad.value.toString());
            if(profileX.isUserLoad.value==true)
              {
-               return  ProfileView(profile: profileX.user.value, onTap: () {Get.to(EDitProfilePage());},);
+               return  ProfileView(profile: profileX.user.value, onTap: () {Get.to(()=>EDitProfilePage());},);
              }
            if(profileX.isUserLoad.value==false)
              {
@@ -54,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
                     return
                       ButtonCustom(text: DefText.signin.tr, icon: FontAwesomeIcons.signInAlt,
                       onTap: () {
-                        Get.to(SignInPage());
+                        Get.to(()=>SignInPage());
                         // profileX.sendSMS('+99362497266');
                       },);
                 }

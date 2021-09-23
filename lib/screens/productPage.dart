@@ -4,15 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
+import 'package:shaikapp/getX/ProfileX.dart';
+import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/services/LangSelector.dart';
+import 'package:shaikapp/services/snackBAr.dart';
 import 'package:shaikapp/style.dart';
 import 'package:shaikapp/widgets/BagButton.dart';
 import 'package:shaikapp/widgets/ImageLoader.dart';
 import 'package:shaikapp/widgets/ProductStatus.dart';
+import 'package:shaikapp/widgets/productLike.dart';
 class ProductPage extends StatelessWidget {
    Products product;
-   ProductPage({required this.product});
+   bool isliked;
+
+   ProductPage({required this.product,required this.isliked});
+   final productX = Get.put(ProductX());
+   final profileX = Get.put(ProfileX());
 
   @override
   Widget build(BuildContext context) {
@@ -47,23 +55,38 @@ class ProductPage extends StatelessWidget {
                 Center(child: ImageLaoder(url: img,)),
                 if(product.status!='OLD')
                   ProductStatus(status: product.status.tr,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: (){},
-                      icon: Icon(FontAwesomeIcons.heart),color: AppColor.backgroundcolorgrey,),
-                  ],
-                ),
+                Obx((){
+                  return
+                    ProductLike(isLiked: productX.chekLikeById(product.id),
+                      onTap: (){
+                      if(profileX.user.value.id!=''){productX.setLike(profileX.user.value.id, product.id);}
+                      else{ShowSnackBar(DefText.alert.tr,DefText.signinpls.tr);}
+                      },);
+                }),
               ],
             ),
           ),
+            Divider(height: 2,),
+
+            Container(
+              color: Colors.white,
+              height: 20,
+              child: Row(
+                children: [
+                  productStates(icon: FontAwesomeIcons.truck, count: product.buying,),
+                  productStates(icon: FontAwesomeIcons.eye, count: product.visited,),
+                  productStates(icon: FontAwesomeIcons.heart, count: product.like_count,),
+                  productStates(icon: FontAwesomeIcons.database, count: product.volume,comment: 'ml',),
+                ],
+              ),
+            ),
             Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.white,
                 child: Text(product.code+' (${analog})',style: AppColor.headlinebluegraybold,)
             ),
             Divider(height: 2,),
+
             Container(
               color: Colors.white,
               height: 50,
@@ -94,37 +117,13 @@ class ProductPage extends StatelessWidget {
                   ),
                   Container(
                     width: 2,
-                    color: AppColor.backgroundcolorgrey,
+                    color: AppColor.backgroundLightcolor,
                   ),
                   Expanded(flex: 1,child: BagButton(product: product,)),
                 ],
               ),
             ),
             Divider(height: 2,),
-            Container(
-              color: Colors.white,
-              height: 50,
-              child: Row(
-                children: [
-                  productStates(icon: FontAwesomeIcons.truck, count: product.buying,),
-                  Container(
-                    width: 2,
-                    color: AppColor.backgroundcolorgrey,
-                  ),
-                  productStates(icon: FontAwesomeIcons.eye, count: product.visited,),
-                  Container(
-                    width: 2,
-                    color: AppColor.backgroundcolorgrey,
-                  ),
-                  productStates(icon: FontAwesomeIcons.heart, count: product.like_count,),
-                  Container(
-                    width: 2,
-                    color: AppColor.backgroundcolorgrey,
-                  ),
-                  productStates(icon: FontAwesomeIcons.database, count: product.volume,),
-                ],
-              ),
-            ),
             Divider(height: 2,),
             for(int i=0;i<=about.length-1;i++)
               Container(
@@ -142,8 +141,9 @@ class productStates extends StatelessWidget {
 
   final IconData icon;
   final int count;
+  final String? comment;
   VoidCallback? onTap;
-  productStates({required this.icon,this.onTap,required this.count});
+  productStates({required this.icon,this.onTap,required this.count,this.comment=''});
 
   @override
   Widget build(BuildContext context) {
@@ -151,16 +151,19 @@ class productStates extends StatelessWidget {
         child:
         InkWell(
           onTap: onTap,
-          child: Column(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                FaIcon(
-                  icon,
-                  size: 20,
-                  color: AppColor.backgroundcolorgrey,
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FaIcon(
+                    icon,
+                    size: 15,
+                    color: AppColor.backgroundcolorgrey,
+                  ),
                 ),
-              Text(count.toString())
+              Text(count.toString()+' '+comment!,style: AppColor.headlinebluegraymini,)
             ],
           ),
         )

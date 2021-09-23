@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/models/bag_list.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/services/getData.dart';
+import 'package:shaikapp/services/snackBAr.dart';
 
 import 'ProfileX.dart';
 import 'categoryX.dart';
@@ -112,6 +114,7 @@ class ProductX extends GetxController{
         likeStatus.value = xStatus.empty;
       }
     }
+    // else{}
   }
   void deleteFromBAg(String clientId,String productId)async{
       likeStatus.value = xStatus.loading;
@@ -151,6 +154,9 @@ class ProductX extends GetxController{
         likeStatus.value = xStatus.empty;
       }
     }
+    else{
+      ShowSnackBar(DefText.alert.tr,DefText.signinpls.tr);
+    }
   }
 
   void checkLike(){
@@ -171,5 +177,16 @@ class ProductX extends GetxController{
       }
     // likeProduct!.refresh();
   }
+   bool chekLikeById(String id){
+     for(int i=0;i<=likeList.value.length-1;i++)
+     {
+         if(likeList.value[i]==id)
+         {
+           return true;
+         }
+     }
+     return false;
+
+   }
 
 }

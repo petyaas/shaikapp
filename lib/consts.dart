@@ -55,7 +55,7 @@ class ApiLinks{
   static String likeSet='api/v1/product/like-set';
   static String likeListGet='api/v1/client/like-list';
   static String listById='api/v1/product/list-ids';
-  static String bagListGet='api/v1/client/basket/list';
-  static String addToBag='api/v1/client/basket/add';
-  static String deleteFromBag='api/v1/client/basket/delete';
+  static String bagListGet='api/v1/basket/get';
+  static String addToBag='api/v1/basket/add';
+  static String deleteFromBag='api/v1/basket/product-delete';
 }

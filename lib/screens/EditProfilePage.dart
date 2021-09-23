@@ -111,7 +111,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
                         child: RadioListTile<int>(
                           // selectedTileColor: AppColor.backgroundcolor,
                           activeColor: AppColor.backgroundcolor,
-                          title:  Text('male'.tr,style: AppColor.headlinebluegray,),
+                          title:  Text(DefText.male.tr,style: AppColor.headlinebluegray,),
                           value: 0,
                           groupValue:profileX.user.value.gender,
                           onChanged: (value) {
@@ -128,7 +128,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
                         //            width: 100,
                         child: RadioListTile<int>(
                           activeColor: AppColor.backgroundcolor,
-                          title:  Text('famale'.tr,style: AppColor.headlinebluegray,),
+                          title:  Text(DefText.famele.tr,style: AppColor.headlinebluegray,),
                           value: 1,
                           groupValue: profileX.user.value.gender,
                           onChanged: (value) {

@@ -43,6 +43,7 @@ class ProductX extends GetxController{
     byListIdStatus.value=xStatus.loading;
     try{
       listOfProducts!.value=await GetData().getListById(listOfId);
+      // print('getByListId-'+listOfProducts!.value.length.toString());
       checkLike();
       byListIdStatus.value=xStatus.loaded;
     }catch(_){
@@ -81,6 +82,7 @@ class ProductX extends GetxController{
     bagListStatus.value=xStatus.loading;
     try{
       bagList.value=(await GetData().getBagList(clientId))!;
+      print('getBagList-'+bagList.value.length.toString());
       bagListStatus.value=xStatus.loaded;
       checkLike();
     }catch(_){
@@ -128,18 +130,35 @@ class ProductX extends GetxController{
     }
 
 
-  void addBag(String clientId,String productId,int count)async{
+  Future<void> checkBagList()async {
+    for (int i=0;i<=listOfProducts!.value.length-1;i++)
+    {
+      if(listOfProducts!.value[i].count<bagList.value[i].amount)
+        {
+          if(listOfProducts!.value[i].count==0){
+          }
+          else {
+            // productX.addBag(profileX.user.value.id, product.id, product.count);
+
+          }
+        }
+
+    }
+
+  }
+
+  Future<void> addBag(String clientId,String productId,int count,int price)async{
     if(clientId!=''){
       bool _isFind = false;
       for (int i = 0; i <= bagList.value.length - 1; i++) {
         if (bagList.value[i].product_id == productId) {
-          bagList.value[i].count=count;
+          bagList.value[i].amount=count;
           _isFind = true;
           break;
         }
       }
       if (_isFind == false) {
-        bagList.value.add(BagList(product_id: productId, count: count));
+        bagList.value.add(BagList(product_id: productId, amount: count, price: price));
       }
       bagList.refresh();
 

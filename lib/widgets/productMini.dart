@@ -18,11 +18,13 @@ import 'ProductStatus.dart';
 class ProductMini extends StatelessWidget {
   Products product;
   bool isliked;
+  BuildContext mycontext;
   // VoidCallback onTap;
   ProductMini(
       {
         required this.product,
         required this.isliked,
+        required this.mycontext
     // required this.onTap
       });
   @override
@@ -33,7 +35,7 @@ class ProductMini extends StatelessWidget {
     final profileX = Get.put(ProfileX());
 
     return Container(
-      padding: EdgeInsets.all(5),
+      // padding: EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
@@ -115,7 +117,7 @@ class ProductMini extends StatelessWidget {
                       ],
                     )
                 ),
-                BagButton(product: product,),
+                BagButton(product: product, mycontext: mycontext,),
               ],
             ),
           ),

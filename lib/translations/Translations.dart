@@ -47,6 +47,7 @@ class AppTranslations extends Translations{
       DefText.payDelivery7:'После того, как Вы проверите и примите заказ, оплата выполняется наличными в национальной валюте.',
       DefText.payDelivery8:'Принятый и оплаченный товар возврату не подлежит;',
       DefText.signinpls:'Войдите в акаунт!!!!.',
+      DefText.nomuchproduct:'Максимальное количество!',
       DefText.emptyLikeList:'Еще не добавлено!!!!.',
       DefText.emptyBagList:'Корзина пуста!!!',
       DefText.unknownError:'Ошибка связи!',
@@ -99,7 +100,8 @@ class AppTranslations extends Translations{
       DefText.emptyLikeList:'Haryt goşulmadyk!!!',
       DefText.emptyBagList:'Sebede haryt goşylmadyk!!!',
       DefText.unknownError:'Internet näsazlygy!',
-      DefText.tryAgainError:'Gaýtadan synanşyp göriň!'
+      DefText.tryAgainError:'Gaýtadan synanşyp göriň!',
+      DefText.nomuchproduct:'Ammarda ýeterlik däl!',
     }
   };
 

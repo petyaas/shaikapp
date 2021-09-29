@@ -16,6 +16,8 @@ class BagScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     productX.getBagByListId(productX.bagList.value);
+
+
     return JelloIn(
         duration: Duration(milliseconds: 100),
       child:
@@ -49,12 +51,12 @@ class BagScreen extends StatelessWidget {
 
                         Obx((){
                           return
-                            ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2],);
+                            ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2], mycontext: context,);
                         }),
                         if((index*2)+1<=productX.listOfProducts!.length-1)
                           Obx((){
                             return
-                              ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1],);
+                              ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1], mycontext: context,);
                           }),
                         if((index*2)+1>productX.listOfProducts!.length-1)
                           Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),

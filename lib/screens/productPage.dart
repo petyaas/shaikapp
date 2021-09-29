@@ -119,7 +119,7 @@ class ProductPage extends StatelessWidget {
                     width: 2,
                     color: AppColor.backgroundLightcolor,
                   ),
-                  Expanded(flex: 1,child: BagButton(product: product,)),
+                  Expanded(flex: 1,child: BagButton(product: product, mycontext: context,)),
                 ],
               ),
             ),

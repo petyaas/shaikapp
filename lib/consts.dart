@@ -5,6 +5,7 @@ class DefText{
   static String favorite='favorite';
   static String profile='profile';
   static String addToBag='addToBag';
+  static String nullproduct='nullproduct';
   static String signin='signin';
   static String signout='signout';
   static String language='language';
@@ -39,6 +40,7 @@ class DefText{
   static String payDelivery7='payDelivery7';
   static String payDelivery8='payDelivery8';
   static String signinpls='signinpls';
+  static String nomuchproduct='nomuchproduct';
   static String emptyLikeList='emptyLikeList';
   static String emptyBagList='emptyBagList';
   static String unknownError='unknownError';

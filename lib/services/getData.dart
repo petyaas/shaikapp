@@ -102,7 +102,7 @@ class GetData {
    formData=FormData.fromMap({
      'product_id':productId,
      'client_id':clientId,
-     'count':count,
+     'amount':count,
    });
    _response= await _postData(ApiLinks.addToBag, formData, '');
    print('likeSet-'+_response.data);
@@ -146,8 +146,10 @@ class GetData {
      'id_list':jsonEncode(listOfIds),
    });
    _response=await _postData(ApiLinks.listById, formData, '');
+   // print(_response.data);
    _map=_response.data;
    _temp=_map['data'];
+   // print(_temp);
 
    // if(_temp[0]['total']!=0){_temp=_temp[0]['products'];}else{_temp=[];}
 
@@ -169,13 +171,14 @@ class GetData {
    print(_map['data']['product_id_list']);
 
    temp=_map['data']['product_id_list'];
-   print('temp='+temp.toString());
+   print('getLikeList='+temp.toString());
    return temp;
  }
  Future<List<BagList>?> getBagList(String clientId)async{
    Response? _response;
    Map<String, dynamic> _map;
    List<dynamic>? temp=[];
+   print('getBagList-'+clientId);
    FormData formData;
    formData=FormData.fromMap({
      'client_id':clientId,
@@ -186,8 +189,8 @@ class GetData {
 
    print(_map['data']);
 
-   temp=_map['data'];
-   // print('temp='+temp.toString());
+   temp=_map['data']['product_data'];
+   print('temp='+temp.toString());
    return temp!.map((json) => BagList.fromJson(json)).toList();
  }
 
@@ -195,7 +198,7 @@ class GetData {
       String endpoint, FormData? body, String token) async {
     var dio = Dio();
     Response  qwq;
-    if (body!=null){print(body.fields.toString());}
+    if (body!=null){print('_postData-'+body.fields.toString());}
       print('token-false');
       print('mla='+ApiLinks.host+endpoint);
       try {

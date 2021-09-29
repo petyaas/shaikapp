@@ -13,8 +13,11 @@ import 'package:shaikapp/widgets/productMini.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key? key}) : super(key: key);
+  
+
   @override
   Widget build(BuildContext context) {
+
     final productX = Get.put(ProductX());
     final screenControlX = Get.put(ScreenControllerX());
 
@@ -41,31 +44,30 @@ class ProductsScreen extends StatelessWidget {
             print((productX.listOfProducts!.length/2).ceil().toString());
             int count=0;
             return
-              ListView.separated(
-                  padding: EdgeInsets.all(10),
-                  itemCount: (productX.listOfProducts!.length/2).ceil(),
-                  itemBuilder: (BuildContext context, int index) {
-                    print(index.toString());
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                      children: [
-                        Obx((){
-                          return
-                            ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2],);
-                        }),
-                        if((index*2)+1<=productX.listOfProducts!.length-1)
-                          Obx((){
-                            return
-                              ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1],);
-                          }),
-                        if((index*2)+1>productX.listOfProducts!.length-1)
-                    Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
-                      ],
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) => const Divider(),
-              );
+                  ListView.separated(
+                      padding: EdgeInsets.all(10),
+                      itemCount: (productX.listOfProducts!.length/2).ceil(),
+                      itemBuilder: (BuildContext context, int index) {
+                        print(index.toString());
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Obx((){
+                              return
+                                ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2], mycontext: context,);
+                            }),
+                            if((index*2)+1<=productX.listOfProducts!.length-1)
+                              Obx((){
+                                return
+                                  ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1], mycontext: context,);
+                              }),
+                            if((index*2)+1>productX.listOfProducts!.length-1)
+                        Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
+                          ],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) => const Divider(),
+                  );
               //ProductMini(product: productX.listOfProducts![0],);
           }
 

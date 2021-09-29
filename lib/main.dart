@@ -8,7 +8,7 @@ import 'package:shaikapp/translations/Translations.dart';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+final navigatorKey = GlobalKey<NavigatorState>();
  main() async{
 
   runApp(
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetMaterialApp(
+      navigatorKey: navigatorKey,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       themeMode: ThemeMode.light,

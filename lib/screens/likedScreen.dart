@@ -28,7 +28,7 @@ class LikedScreen extends StatelessWidget {
               if(productX.byListIdStatus.value==xStatus.loading){
                 return Center(child: CircularProgressIndicator(),);
               }
-              if(productX.bagListStatus.value==xStatus.error) {
+              if(productX.byListIdStatus.value==xStatus.error) {
                 return Center(child: IconMessage(icon:FontAwesomeIcons.globe,text:DefText.unknownError.tr),);
               }
 
@@ -50,12 +50,12 @@ class LikedScreen extends StatelessWidget {
 
                           Obx((){
                             return
-                              ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2],);
+                              ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2], mycontext: context,);
                           }),
                           if((index*2)+1<=productX.listOfProducts!.length-1)
                             Obx((){
                               return
-                                ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1],);
+                                ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1], mycontext: context,);
                             }),
                           if((index*2)+1>productX.listOfProducts!.length-1)
                             Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
@@ -72,7 +72,7 @@ class LikedScreen extends StatelessWidget {
             return Center(child: IconMessage(icon:FontAwesomeIcons.signInAlt,text:DefText.signinpls.tr));
           }
 
-          return Center(child: IconMessage(icon:FontAwesomeIcons.globe,text:DefText.unknownError.tr));
+          return Center(child: IconMessage(icon:FontAwesomeIcons.globe,text:'DefText.unknownError.tr'));
         }),
     );
   }

@@ -96,13 +96,14 @@ class GetData {
    print('likeSet-'+_response.data);
    return true;
  }
- Future<bool> addToBag(String productId,String clientId,int count)async{
+ Future<bool> addToBag(String productId,String clientId,int count,int price)async{
    FormData formData;
    Response? _response;
    formData=FormData.fromMap({
      'product_id':productId,
      'client_id':clientId,
      'amount':count,
+     'price':price,
    });
    _response= await _postData(ApiLinks.addToBag, formData, '');
    print('likeSet-'+_response.data);
@@ -189,7 +190,7 @@ class GetData {
 
    print(_map['data']);
 
-   temp=_map['data']['product_data'];
+   temp=_map['data'];
    print('temp='+temp.toString());
    return temp!.map((json) => BagList.fromJson(json)).toList();
  }

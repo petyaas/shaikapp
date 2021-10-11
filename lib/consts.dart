@@ -45,6 +45,12 @@ class DefText{
   static String emptyBagList='emptyBagList';
   static String unknownError='unknownError';
   static String tryAgainError='tryAgainError';
+  static String apply='apply';
+  static String newProductamount='newProductamount';
+  static String isNewPrice='isNewPrice';
+  static String totalPriceBag='totalPriceBag';
+  static String priceIsSmall='priceIsSmall';
+  static String priceIsGood='priceIsGood';
 }
 class ApiLinks{
   static String host='https://shaik.shop/';

@@ -110,15 +110,6 @@ class onBagList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if(product.count<productX.bagList.value[i].count)
-    //   {
-    //     if(product.count==0){
-    //     }
-    //     else {
-    //       productX.addBag(profileX.user.value.id, product.id, product.count);
-    //
-    //     }
-    //   }
     return Row(
       children: [
         Expanded(

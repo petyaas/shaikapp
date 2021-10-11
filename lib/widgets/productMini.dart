@@ -25,7 +25,7 @@ class ProductMini extends StatelessWidget {
         required this.product,
         required this.isliked,
         required this.mycontext
-    // required this.onTap
+        // required this.onTap
       });
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class ProductMini extends StatelessWidget {
           InkWell(
             onTap: (){
               Get.to(()=>ProductPage(product: product, isliked:isliked,));
-              },
+            },
             child: Column(
               children: [
                 if(langSelectorX.istklang.value==false)Expanded(
@@ -123,13 +123,13 @@ class ProductMini extends StatelessWidget {
           ),
           // if(product.status!='OLD')
           ProductStatus(status: product.status.tr,),
-                 ProductLike(isLiked: isliked,
-                 onTap: (){
-                   if(profileX.user.value.id!='')
-                   { productX.setLike(profileX.user.value.id, product.id);}
-                   else{ShowSnackBar(DefText.alert.tr,DefText.signinpls.tr);}
+          ProductLike(isLiked: isliked,
+            onTap: (){
+              if(profileX.user.value.id!='')
+              { productX.setLike(profileX.user.value.id, product.id);}
+              else{ShowSnackBar(DefText.alert.tr,DefText.signinpls.tr);}
 
-                   },),
+            },),
 
         ],
       ),

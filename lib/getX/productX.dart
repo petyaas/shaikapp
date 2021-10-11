@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/models/bag_list.dart';
@@ -10,7 +11,7 @@ import 'categoryX.dart';
 import 'events.dart';
 class ProductX extends GetxController{
 
-  RxInt total=0.obs;
+  RxInt totalPrice=0.obs;
   RxList<Products>? listOfProducts = <Products>[].obs;
   RxList<bool>? likeProduct = <bool>[].obs;
   Rx<xStatus> productStatus=xStatus.empty.obs;
@@ -19,6 +20,7 @@ class ProductX extends GetxController{
   RxList<dynamic> likeList=<dynamic>[].obs;
   RxList<BagList> bagList=<BagList>[].obs;
   Rx<xStatus> bagListStatus=xStatus.empty.obs;
+  RxBool checkBagNotify=false.obs;
 
   // @override
   // void onInit() {
@@ -32,6 +34,8 @@ class ProductX extends GetxController{
     try{
       listOfProducts!.value=await GetData().getProductLIst(sub_category_id, begin, end);
       checkLike();
+      checkBagList();
+      checkTotalPrice();
       productStatus.value=xStatus.loaded;
     }catch(_){
       productStatus.value=xStatus.empty;
@@ -45,6 +49,9 @@ class ProductX extends GetxController{
       listOfProducts!.value=await GetData().getListById(listOfId);
       // print('getByListId-'+listOfProducts!.value.length.toString());
       checkLike();
+      checkBagList();
+      checkTotalPrice();
+
       byListIdStatus.value=xStatus.loaded;
     }catch(_){
       byListIdStatus.value=xStatus.error;
@@ -61,6 +68,8 @@ class ProductX extends GetxController{
     try{
       listOfProducts!.value=await GetData().getListById(_temp);
       checkLike();
+      checkBagList();
+      checkTotalPrice();
       byListIdStatus.value=xStatus.loaded;
     }catch(_){
       byListIdStatus.value=xStatus.error;
@@ -73,6 +82,7 @@ class ProductX extends GetxController{
       likeList.value=(await GetData().getLikeList(clientId))!;
       likeStatus.value=xStatus.loaded;
       checkLike();
+      checkBagList();
     }catch(_){
       likeStatus.value=xStatus.error;
     }
@@ -85,9 +95,22 @@ class ProductX extends GetxController{
       print('getBagList-'+bagList.value.length.toString());
       bagListStatus.value=xStatus.loaded;
       checkLike();
+      checkBagList();
+      checkTotalPrice();
     }catch(_){
       bagListStatus.value=xStatus.error;
     }
+  }
+  void checkTotalPrice(){
+    if(bagList.value.length!=0)
+      {
+        totalPrice.value=0;
+        bagList.value.forEach((element) {
+          totalPrice.value=totalPrice.value+(element.price*element.amount);
+        });
+      }
+    else{totalPrice.value=0;}
+
   }
 
   void setLike(String clientId,String productId)async{
@@ -106,6 +129,8 @@ class ProductX extends GetxController{
       likeList.refresh();
 
       checkLike();
+      checkBagList();
+
       // getByListId(likeList.value);
       likeStatus.value = xStatus.loading;
       try {
@@ -123,6 +148,7 @@ class ProductX extends GetxController{
       try {
         await GetData().deleteFromBag(productId, clientId);
         getLikeList(clientId);
+        checkTotalPrice();
         likeStatus.value = xStatus.loaded;
       } catch (_) {
         likeStatus.value = xStatus.empty;
@@ -133,18 +159,42 @@ class ProductX extends GetxController{
   Future<void> checkBagList()async {
     for (int i=0;i<=listOfProducts!.value.length-1;i++)
     {
-      if(listOfProducts!.value[i].count<bagList.value[i].amount)
+      for(int j=0;j<=bagList.value.length-1;j++)
         {
-          if(listOfProducts!.value[i].count==0){
-          }
-          else {
-            // productX.addBag(profileX.user.value.id, product.id, product.count);
-
+          if(listOfProducts!.value[i].id==bagList.value[j].product_id)
+          {
+            if(listOfProducts!.value[i].count<bagList.value[j].amount)
+            {
+              bagList.value[j].oldamount=bagList.value[j].amount;
+              bagList.value[j].amount=listOfProducts!.value[i].count;
+              checkBagNotify.value=true;
+            }
+            if(listOfProducts!.value[i].new_price!=bagList.value[j].price)
+            {
+              bagList.value[j].oldprice=bagList.value[j].price;
+              bagList.value[j].price=listOfProducts!.value[i].new_price;
+              checkBagNotify.value=true;
+            }
           }
         }
-
     }
+    checkTotalPrice();
+  }
 
+  void addBagNotify(String clientId){
+    checkBagNotify.value=false;
+    for (int i=0;i<=listOfProducts!.value.length-1;i++)
+    {
+      for(int j=0;j<=bagList.value.length-1;j++)
+      {
+        if(listOfProducts!.value[i].id==bagList.value[j].product_id)
+        {
+          addBag(clientId,listOfProducts!.value[i].id,bagList.value[j].amount,bagList.value[j].price);
+          bagList.value[j].oldprice=-1; bagList.value[j].oldamount=-1;
+        }
+      }
+    }
+    checkBagList();
   }
 
   Future<void> addBag(String clientId,String productId,int count,int price)async{
@@ -161,12 +211,13 @@ class ProductX extends GetxController{
         bagList.value.add(BagList(product_id: productId, amount: count, price: price));
       }
       bagList.refresh();
+      checkTotalPrice();
 
       // checkLike();
       // getByListId(likeList.value);
       likeStatus.value = xStatus.loading;
       try {
-        await GetData().addToBag(productId, clientId,count);
+        await GetData().addToBag(productId, clientId,count,price);
         getLikeList(clientId);
         likeStatus.value = xStatus.loaded;
       } catch (_) {

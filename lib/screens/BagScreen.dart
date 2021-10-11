@@ -1,10 +1,15 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/getX/productX.dart';
+import 'package:shaikapp/style.dart';
+import 'package:shaikapp/widgets/ButtonCustom.dart';
+import 'package:shaikapp/widgets/CustomTextField.dart';
+import 'package:shaikapp/widgets/OrderWidget.dart';
 import 'package:shaikapp/widgets/iconMessage.dart';
 import 'package:shaikapp/widgets/productMini.dart';
 
@@ -37,33 +42,43 @@ class BagScreen extends StatelessWidget {
               print(productX.listOfProducts!.value.length.toString());
               int count=0;
               return
-                ListView.separated(
-                  padding: EdgeInsets.all(10),
-                  // itemCount: productX.listOfProducts!.value.length,
-                  itemCount: (productX.listOfProducts!.length/2).ceil(),
-                  itemBuilder: (BuildContext context, int index) {
-                    print(index.toString());
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.all(10),
+                        // itemCount: productX.listOfProducts!.value.length,
+                        itemCount: (productX.listOfProducts!.length/2).ceil(),
+                        itemBuilder: (BuildContext context, int index) {
+                          print(index.toString());
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                      children: [
-                        // ProductMini(product: productX.listOfProducts!.value[index], isliked: productX.likeProduct!.value[index],),
+                            children: [
+                              // ProductMini(product: productX.listOfProducts!.value[index], isliked: productX.likeProduct!.value[index],),
 
-                        Obx((){
-                          return
-                            ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2], mycontext: context,);
-                        }),
-                        if((index*2)+1<=productX.listOfProducts!.length-1)
-                          Obx((){
-                            return
-                              ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1], mycontext: context,);
-                          }),
-                        if((index*2)+1>productX.listOfProducts!.length-1)
-                          Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
-                      ],
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) => const Divider(),
+                              Obx((){
+                                return
+                                  ProductMini(product: productX.listOfProducts![index*2], isliked: productX.likeProduct!.value[index*2], mycontext: context,);
+                              }),
+                              if((index*2)+1<=productX.listOfProducts!.length-1)
+                                Obx((){
+                                  return
+                                    ProductMini(product: productX.listOfProducts![(index*2)+1], isliked: productX.likeProduct!.value[(index*2)+1], mycontext: context,);
+                                }),
+                              if((index*2)+1>productX.listOfProducts!.length-1)
+                                Container(color: Colors.transparent,height: 250,width:  (MediaQuery.of(context).size.width*0.45),),
+                            ],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) => const Divider(),
+                      ),
+                    ),
+                    Container(
+                      color: AppColor.white,
+                      child: OrderWidget(),
+                    ),
+                  ],
                 );
               //ProductMini(product: productX.listOfProducts![0],);
             }

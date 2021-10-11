@@ -8,6 +8,7 @@ class AppColor {
  static const Color productshadow=Color(0xFF212A48);
  static const Color productprice=Color(0xFFEA7844);
  static const Color laghtBlueGray=Color(0xFF4C5166);
+ static const Color trasnparent=Color(0x504C5166);
  static const Color ticketbackgruond=Color(0xFF080B15);
 
  static const Color green=Color.fromRGBO(0,177,130,1);

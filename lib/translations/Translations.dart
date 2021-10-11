@@ -51,7 +51,14 @@ class AppTranslations extends Translations{
       DefText.emptyLikeList:'Еще не добавлено!!!!.',
       DefText.emptyBagList:'Корзина пуста!!!',
       DefText.unknownError:'Ошибка связи!',
-      DefText.tryAgainError:'Повторите еще!'
+      DefText.tryAgainError:'Повторите еще!',
+      DefText.newProductamount:'Всего в корзине',
+      DefText.apply:'Принять',
+      DefText.isNewPrice:'Цена продукта изменено',
+      DefText.totalPriceBag:'Сумма',
+      DefText.priceIsSmall:'Доставка платная!',
+      DefText.priceIsGood:'Доставка бесплатная!',
+      DefText.nullproduct:'Нет в наличии!',
     },
     'tk_TK':{
       'NEW':'Täze',
@@ -102,6 +109,13 @@ class AppTranslations extends Translations{
       DefText.unknownError:'Internet näsazlygy!',
       DefText.tryAgainError:'Gaýtadan synanşyp göriň!',
       DefText.nomuchproduct:'Ammarda ýeterlik däl!',
+      DefText.newProductamount:'Sebetdaki harydyň sany uytgedi',
+      DefText.apply:'Düşnikli',
+      DefText.isNewPrice:'Harydyň bahasy uýtgedi',
+      DefText.totalPriceBag:'Jemi',
+      DefText.priceIsSmall:'Saryt eltip bermek hyzmatydan pes!',
+      DefText.priceIsGood:'Eltip bermek hyzmaty mugt!',
+      DefText.nullproduct:'Satylykda ýok',
     }
   };
 

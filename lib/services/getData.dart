@@ -32,13 +32,14 @@ class GetData {
    _temp=_map['data'];
    return _temp!.map((json) => CategoryList.fromJson(json)).toList();
  }
- Future<ClientProfile> codeVerify(String phone,String code)async{
+ Future<ClientProfile> codeVerify(String phone,String code,String? device_token)async{
    Response? _response;
    Map<String, dynamic> _map;
    FormData formData;
    formData=FormData.fromMap({
      'phone':phone,
      'code':code,
+     'device_token':device_token,
    });
 
    _response=await _postData(ApiLinks.codeVerify, formData, '');
@@ -55,6 +56,19 @@ class GetData {
 
    return ClientProfile.emptyProf();
  }
+ Future<void> setToken(String id,String device_token)async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   FormData formData;
+   formData=FormData.fromMap({
+     'client_id':id,
+     'device_token':device_token,
+   });
+
+   _response=await _postData(ApiLinks.setToken, formData, '');
+   print(_response.data);
+ }
+
  Future<bool> editProfile(ClientProfile profile)async{
    Response? _response;
    Map<String, dynamic> _map;

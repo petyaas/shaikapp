@@ -7,6 +7,7 @@ class ClientProfile{
   String phone;
   List<dynamic> addres=[];
   String status;
+  String devicetoken;
   String create_ts;
   String update_ts;
   ClientProfile({
@@ -18,6 +19,7 @@ class ClientProfile{
     required this.status,
     required this.create_ts,
     required this.update_ts,
+    required this.devicetoken,
 });
 
   factory ClientProfile.fromJson(Map<String, dynamic> json) => ClientProfile(
@@ -29,6 +31,7 @@ class ClientProfile{
     status: json["status"],
     create_ts: json["create_ts"],
     update_ts: json["update_ts"],
+    devicetoken: json["device_token"],
   );
 
 
@@ -41,7 +44,8 @@ class ClientProfile{
     'status': status,
     'create_ts': create_ts,
     'update_ts': update_ts,
+    'device_token': devicetoken,
   };
-  factory ClientProfile.emptyProf() => ClientProfile(id: '', client_name: '', phone: '', status: '', create_ts: '', update_ts: '',gender: -1, addres: []);
+  factory ClientProfile.emptyProf() => ClientProfile(id: '', client_name: '', phone: '', status: '', create_ts: '', update_ts: '',gender: -1, addres: [], devicetoken:'');
 
 }

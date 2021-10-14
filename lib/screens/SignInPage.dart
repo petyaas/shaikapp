@@ -9,6 +9,7 @@ import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/SignInGetX.dart';
 import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/screens/HomeScreen.dart';
+import 'package:shaikapp/services/firebase_messaging_service.dart';
 import 'package:shaikapp/style.dart';
 import 'package:shaikapp/widgets/ButtonCustom.dart';
 import 'package:shaikapp/widgets/CustomTextField.dart';
@@ -30,7 +31,7 @@ TextEditingController _codecontroller=new TextEditingController();
     telephony.requestPhoneAndSmsPermissions;
 
     telephony.listenIncomingSms(
-        onNewMessage: (SmsMessage message) {
+        onNewMessage: (SmsMessage message) async{
           String body=message.body ?? "Error";
 
           if((body!='Error')&&(body.indexOf('SHAIK verification code-')!=-1))
@@ -39,7 +40,7 @@ TextEditingController _codecontroller=new TextEditingController();
               _codecontroller.text=body;
               if(_codecontroller.text.length==6)
               {
-                SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text);
+                SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,await Get.find<FireBaseMessagingService>().getDeviceToken());
               }
             }
           print('incomSMS='+body);
@@ -75,10 +76,10 @@ TextEditingController _codecontroller=new TextEditingController();
                   {
                     return
                       EnterCode(controller: _codecontroller,
-                        onTap: () {
+                        onTap: () async{
                           if(_codecontroller.text.length==6)
                           {
-                            SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text);
+                            SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,await Get.find<FireBaseMessagingService>().getDeviceToken());
                           }
                         }, onCountDown: () { SignInX.status.value=xSignIn.enternumber;_controller.text=''; }, timer: 60, phone: '+993'+_controller.text,);
                   }

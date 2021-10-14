@@ -11,8 +11,8 @@ import 'CustomTextField.dart';
 import 'categors.dart';
 class OrderWidget extends StatelessWidget {
 
-  final productX = Get.put(ProductX());
-  final profileX = Get.put(ProfileX());
+  // final productX = Get.put(ProductX());
+  // final profileX = Get.put(ProfileX());
 
   TextEditingController _nameController=new TextEditingController();
   TextEditingController _phoneController=new TextEditingController();
@@ -20,8 +20,8 @@ class OrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    _nameController.text=profileX.user.value.client_name;
-    _phoneController.text=profileX.user.value.phone;
+    _nameController.text=Get.find<ProfileX>().user.value.client_name;
+    _phoneController.text=Get.find<ProfileX>().user.value.phone;
     return ExpansionTile(
       expandedAlignment: Alignment.topLeft,
       title: Row(
@@ -29,7 +29,7 @@ class OrderWidget extends StatelessWidget {
           Obx((){
             return
               AutoSizeText(
-                DefText.totalPriceBag.tr+'-'+productX.totalPrice.value.toString()+' TMT',style: AppColor.headlinebluegray,
+                DefText.totalPriceBag.tr+'-'+Get.find<ProductX>().totalPrice.value.toString()+' TMT',style: AppColor.headlinebluegray,
                 minFontSize: 7,
                 maxLines: 1,
                 maxFontSize: 16,
@@ -37,14 +37,19 @@ class OrderWidget extends StatelessWidget {
           }),
         ],
       ),
-      subtitle: Row(
-        children: [
-          if(productX.totalPrice.value<150)
-            Text(DefText.priceIsSmall.tr),
-          if(productX.totalPrice.value>=150)
-            Text(DefText.priceIsGood.tr),
-        ],
-      ),
+      subtitle:
+      Obx(()
+      {
+        return
+          Row(
+            children: [
+              if(Get.find<ProductX>().totalPrice.value<150)
+                Text(DefText.priceIsSmall.tr),
+              if(Get.find<ProductX>().totalPrice.value>=150)
+                Text(DefText.priceIsGood.tr),
+            ],
+          );
+      }),
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -10,7 +10,7 @@ class SliderGetX extends GetxController{
 
   @override
   void onInit() {
-    getSliders();
+    // getSliders();
     super.onInit();
   }
   @override
@@ -24,4 +24,9 @@ class SliderGetX extends GetxController{
     //   status.value=xStatus.empty;
     // }
   }
+  Future<SliderGetX> init() async {
+    getSliders();
+    return this;
+  }
+
 }

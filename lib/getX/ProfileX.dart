@@ -12,7 +12,7 @@ import 'events.dart';
   class ProfileX extends GetxController{
   LocalStorage _storage = LocalStorage();
   Rx<xStatus> status=xStatus.empty.obs;
-  final  user=ClientProfile(id: '', client_name: '', gender: -1, phone: '', addres: [], status: '', create_ts: '', update_ts: '').obs;
+  final  user=ClientProfile(id: '', client_name: '', gender: -1, phone: '', addres: [], status: '', create_ts: '', update_ts: '', devicetoken: '').obs;
   // ClientProfile get user => _user;
   RxBool isUserLoad=false.obs;
   final productX = Get.put(ProductX());
@@ -33,7 +33,10 @@ void setClientName(String name){
     user.value.client_name=name;
     user.refresh();
 }
-
+Future<ProfileX> init()async{
+  getProfile();
+    return this;
+}
   Future<bool> editProfile(ClientProfile userProfile) async {
     String userToMap = jsonEncode(userProfile.toJson());
     print(userToMap);
@@ -61,6 +64,10 @@ void setClientName(String name){
   setCurrentUser(String userJson) async {
     var userRaw = json.decode(userJson);
     user.value = ClientProfile.fromJson(userRaw);
+  }
+
+  setTokenUser(String id,String device_token) async {
+    GetData().setToken(id, device_token);
   }
 
   getProfile() async {

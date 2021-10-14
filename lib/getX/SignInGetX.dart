@@ -18,10 +18,10 @@ class SignInGetX extends GetxController{
     //   throw(_);
     // }
   }
-  void VerifyCode(String phone,String code)async{
+  void VerifyCode(String phone,String code,String? device_token)async{
     status.value=xSignIn.loadign;
     ClientProfile _profile;
-    _profile=await GetData().codeVerify(phone, code);
+    _profile=await GetData().codeVerify(phone, code,device_token);
     if(_profile.phone!=''){
       profileX.editProfile(_profile);
       status.value=xSignIn.completed;

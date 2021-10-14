@@ -59,6 +59,7 @@ class ApiLinks{
   static String productList='api/v1/product/list';
   static String registerClient='api/v1/client/register';
   static String codeVerify='api/v1/client/code-verify';
+  static String setToken='api/v1/client/update-device-token';
   static String editProfile='api/v1/client/update';
   static String likeSet='api/v1/product/like-set';
   static String likeListGet='api/v1/client/like-list';

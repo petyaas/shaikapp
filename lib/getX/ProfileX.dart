@@ -12,7 +12,7 @@ import 'events.dart';
   class ProfileX extends GetxController{
   LocalStorage _storage = LocalStorage();
   Rx<xStatus> status=xStatus.empty.obs;
-  final  user=ClientProfile(id: '', client_name: '', gender: -1, phone: '', addres: [], status: '', create_ts: '', update_ts: '', devicetoken: '').obs;
+  final  user=ClientProfile(id: '', client_name: '', gender: -1, phone: '', address: [], status: '', create_ts: '', update_ts: '', devicetoken: '').obs;
   // ClientProfile get user => _user;
   RxBool isUserLoad=false.obs;
   final productX = Get.put(ProductX());

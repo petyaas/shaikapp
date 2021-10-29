@@ -59,7 +59,8 @@ class AppTranslations extends Translations{
       DefText.priceIsSmall:'Доставка платная!',
       DefText.priceIsGood:'Доставка бесплатная!',
       DefText.nullproduct:'Нет в наличии!',
-    },
+      DefText.adresses:'Адресы',
+},
     'tk_TK':{
       'NEW':'Täze',
       'STOCKS':'Aksiýa',
@@ -115,7 +116,8 @@ class AppTranslations extends Translations{
       DefText.totalPriceBag:'Jemi',
       DefText.priceIsSmall:'Saryt eltip bermek hyzmatydan pes!',
       DefText.priceIsGood:'Eltip bermek hyzmaty mugt!',
-      DefText.nullproduct:'Satylykda ýok',
+      DefText.nullproduct:'Satlykda ýok',
+      DefText.adresses:'Salgylar',
     }
   };
 

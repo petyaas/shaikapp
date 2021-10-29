@@ -51,6 +51,8 @@ class DefText{
   static String totalPriceBag='totalPriceBag';
   static String priceIsSmall='priceIsSmall';
   static String priceIsGood='priceIsGood';
+  static String adresses='adresses';
+
 }
 class ApiLinks{
   static String host='https://shaik.shop/';

@@ -67,7 +67,7 @@ else{
       countrycode.value='TK';
       langtext.value='Turkmen';
     }
-   await LocalStorage().setCurrentLocale(text);
+   await LocalStorage().getCurrentLocale();
     Get.updateLocale(Locale(langcode.value,countrycode.value));
   }
 

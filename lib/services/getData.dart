@@ -82,7 +82,7 @@ class GetData {
      'id':profile.id ,
      'client_name':profile.client_name,
      'phone':profile.phone,
-     'address':jsonEncode(profile.addres),
+     'address':jsonEncode(profile.address),
      'gender':_gender,
    });
 
@@ -99,6 +99,7 @@ class GetData {
    await _postData(ApiLinks.registerClient, formData, '');
    return true;
  }
+
  Future<bool> likeSet(String productId,String clientId)async{
    FormData formData;
    Response? _response;

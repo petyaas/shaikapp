@@ -5,7 +5,7 @@ class ClientProfile{
   String client_name=' ';
   int gender;
   String phone;
-  List<dynamic> addres=[];
+  List<dynamic> address=[];
   String status;
   String devicetoken;
   String create_ts;
@@ -15,7 +15,7 @@ class ClientProfile{
     required this.client_name,
     required this.gender,
     required this.phone,
-    required this.addres,
+    required this.address,
     required this.status,
     required this.create_ts,
     required this.update_ts,
@@ -27,7 +27,7 @@ class ClientProfile{
     client_name: json["client_name"]??"",
     gender: json["gender"],
     phone: json["phone"],
-    addres: json["addres"]??[],
+    address: json["address"]??[],
     status: json["status"],
     create_ts: json["create_ts"],
     update_ts: json["update_ts"],
@@ -40,12 +40,12 @@ class ClientProfile{
     'client_name': client_name,
     'gender': gender,
     'phone': phone,
-    'addres': addres,
+    'address': address,
     'status': status,
     'create_ts': create_ts,
     'update_ts': update_ts,
     'device_token': devicetoken,
   };
-  factory ClientProfile.emptyProf() => ClientProfile(id: '', client_name: '', phone: '', status: '', create_ts: '', update_ts: '',gender: -1, addres: [], devicetoken:'');
+  factory ClientProfile.emptyProf() => ClientProfile(id: '', client_name: '', phone: '', status: '', create_ts: '', update_ts: '',gender: -1, address: [], devicetoken:'');
 
 }

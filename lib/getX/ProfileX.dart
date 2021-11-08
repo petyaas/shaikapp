@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/getX/productX.dart';
 
 import 'package:shaikapp/models/clientProfile.dart';
 import 'package:shaikapp/services/Storage.dart';
 import 'package:shaikapp/services/getData.dart';
+import 'package:shaikapp/services/snackBAr.dart';
 
 import 'events.dart';
 
@@ -86,6 +88,7 @@ Future<ProfileX> init()async{
       user.value = ClientProfile.emptyProf();
       isUserLoad.value=false;
     }
+
     isUserLoad.refresh();
     user.refresh();
   }
@@ -98,4 +101,22 @@ Future<ProfileX> init()async{
     isUserLoad.value=false;
     await _storage.removeCurrentUser();
   }
+  
+  toOrder(String address,String phone,String order_name,String delivery_date)async{
+
+   if(await GetData().toOrder(user.value.id,address,phone,order_name,delivery_date)==true)
+     {
+       ShowSnackBar('SHAIK', DefText.orderSent.tr);
+       productX.getBagList(user.value.id);
+       productX.getBagByListId(productX.bagList.value);
+
+       // productX.getBagByListId(productX.bagList.value);
+     }
+   else{
+     ShowSnackBar('SHAIK', DefText.orderNotSent.tr);
+
+   }
+    
+  }
+  
 }

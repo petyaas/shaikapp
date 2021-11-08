@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/getX/ProfileX.dart';
+import 'package:shaikapp/models/clientProfile.dart';
 import 'package:shaikapp/services/getData.dart';
 import 'package:shaikapp/services/snackBAr.dart';
 import 'package:shaikapp/style.dart';
@@ -19,9 +20,10 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
   final profileX = Get.put(ProfileX());
 
   final TextEditingController _namecontroller = new TextEditingController();
+  final TextEditingController _addresscontroller = new TextEditingController();
 
   final TextEditingController _phonecontroller = new TextEditingController();
-
+  FocusNode focusNode = new FocusNode();
   int gender = -1;
   @override
   void initState() {
@@ -32,6 +34,7 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    ClientProfile user=profileX.user.value;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -43,8 +46,6 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
           IconButton(
               onPressed: () async {
                 profileX.user.value.client_name = _namecontroller.text;
-                profileX.user.value.address.add('Ahsha ajksd jasd');
-                profileX.user.value.address.add('Ahsha ajksd jasd');
                 if (await GetData().editProfile(profileX.user.value) == true) {
                   // profileX.user.value.client_name=_namecontroller.text;
                   profileX.editProfile(profileX.user.value);
@@ -164,22 +165,37 @@ class _EDitProfilePageState extends State<EDitProfilePage> {
               AutoSizeText(DefText.adresses.tr),
               SizedBox(height: 5,),
               CustomTextField(
-                controller: _namecontroller,
+                controller: _addresscontroller,
                 // hint: profileX.user.value.client_name,
                 keybord: TextInputType.text,
-                actionWidget: IconButton(onPressed: (){},icon: Icon(FontAwesomeIcons.plusCircle,color: AppColor.backgroundcolorgrey,),),
+                focus: focusNode,
+                actionWidget:
+                IconButton(
+                  onPressed: (){
+                    if(profileX.user.value.address.contains(_addresscontroller.text)==false)
+                      {
+                        profileX.user.value.address.add(_addresscontroller.text);
+                        profileX.user.refresh();
+                      }
+                    _addresscontroller.text='';
+                    focusNode.unfocus();
+                  },
+                  icon: Icon(FontAwesomeIcons.plusCircle,color: AppColor.backgroundcolorgrey,),),
               ),
               Divider(color: AppColor.backgroundcolorgrey,),
               for(int i=0;i<=profileX.user.value.address.length-1;i++)
                 Column(
                   children: [
                     Container(
-                      height: 80,
+                      height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AutoSizeText(profileX.user.value.address[i].toString(),maxLines: 2,minFontSize: 12,style: AppColor.headlinebluegray,),
-                          IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.trashAlt))
+                          IconButton(onPressed: (){
+                            profileX.user.value.address.removeAt(i);
+                            profileX.user.refresh();
+                          }, icon: Icon(FontAwesomeIcons.trashAlt))
                         ],
                       ),
                     ),

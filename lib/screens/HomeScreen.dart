@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/screenControllerX.dart';
 import 'package:shaikapp/widgets/carousel.dart';
 import 'package:shaikapp/widgets/categors.dart';
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                  child:
                      Obx((){
                        return
-                           Text(screenControlX.testString.value);
+                           Text(Get.find<ProfileX>().user.value.devicetoken);
                      }),
                 ),
               ],

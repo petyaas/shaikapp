@@ -16,6 +16,8 @@ class CustomTextField extends StatelessWidget {
   final String? errortext;
   final TextInputType keybord;
   final List<TextInputFormatter>? fomratter;
+  final FocusNode? focus;
+  final EdgeInsetsGeometry? contentPadding;
   CustomTextField(
       {
         this.hint='',
@@ -31,12 +33,15 @@ class CustomTextField extends StatelessWidget {
         this.errortext,
         this.keybord=TextInputType.name,
         this.fomratter,
+        this.focus,
+        this.contentPadding,
       });
 
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      focusNode: focus,
       enabled: enabled,
 
       autofocus: autoFocus,
@@ -59,6 +64,7 @@ class CustomTextField extends StatelessWidget {
         alignLabelWithHint: true,
         helperText: helperText,
 //        hintText: hint,
+        contentPadding: contentPadding,
       focusedBorder:OutlineInputBorder(
         borderRadius:  const BorderRadius.all(
           const Radius.circular(11.0),

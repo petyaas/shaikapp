@@ -15,12 +15,12 @@ final navigatorKey = GlobalKey<NavigatorState>();
  initServices() async {
   Get.log('starting services ...');
   // await GetStorage.init();
+  await Firebase.initializeApp();
   await Get.putAsync(() => SliderGetX().init());
   await Get.putAsync(() => ProfileX().init());
   // await Get.putAsync(() => GlobalService().init());
-  await Firebase.initializeApp();
-  // await Get.putAsync(() => AuthService().init());
   await Get.putAsync(() => FireBaseMessagingService().init());
+  // await Get.putAsync(() => AuthService().init());
   // await Get.putAsync(() => LaravelApiClient().init());
   // await Get.putAsync(() => FirebaseProvider().init());
   // await Get.putAsync(() => SettingsService().init());

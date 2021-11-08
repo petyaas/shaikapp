@@ -50,8 +50,18 @@ class DefText{
   static String isNewPrice='isNewPrice';
   static String totalPriceBag='totalPriceBag';
   static String priceIsSmall='priceIsSmall';
+  static String deliveryNotSup='deliveryNotSup';
   static String priceIsGood='priceIsGood';
   static String adresses='adresses';
+  static String adress='adress';
+  static String toOrder='toOrder';
+  static String orderSent='orderSent';
+  static String orderNotSent='orderNotSent';
+  static String delivertime='delivertime';
+  static String toDay='toDay';
+  static String yesterday='yesterday';
+  static String deliveryNotSupDay='deliveryNotSupDay';
+  static String oClock='oClock';
 
 }
 class ApiLinks{
@@ -69,4 +79,7 @@ class ApiLinks{
   static String bagListGet='api/v1/basket/get';
   static String addToBag='api/v1/basket/add';
   static String deleteFromBag='api/v1/basket/product-delete';
+  static String toOrder='api/v1/order/add';
+  static String getOrders='api/v1/order/client-history';
+  static String orderInfo='api/v1/order/info';
 }

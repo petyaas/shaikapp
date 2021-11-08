@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shaikapp/consts.dart';
 import 'package:shaikapp/models/bag_list.dart';
+import 'package:shaikapp/models/orderInfo.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/services/getData.dart';
 import 'package:shaikapp/services/snackBAr.dart';
@@ -21,6 +23,7 @@ class ProductX extends GetxController{
   RxList<BagList> bagList=<BagList>[].obs;
   Rx<xStatus> bagListStatus=xStatus.empty.obs;
   RxBool checkBagNotify=false.obs;
+  final  orderInfo=OrderInfo(delivery: true, hour: '0', delivery_price: 0, toDay: 0, deliveryHour: '', dminMinute: 0, dmaxMinute: 0, deliverDate: '').obs;
 
   // @override
   // void onInit() {
@@ -42,12 +45,66 @@ class ProductX extends GetxController{
     }
   }
   @override
+  void getOrderInfo()async{
+    try{
+      orderInfo.value=await GetData().getOrderInfo();
+      checkTimeDeliver();
+    }catch(_){
+    }
+  }
+  void checkTimeDeliver(){
+    int hour=int.parse((orderInfo.value.hour.substring(0,orderInfo.value.hour.indexOf(":"))));
+    print('hpihph='+hour.toString());
+    if(orderInfo.value.toDay==0)
+      {
+        if(hour>=21)
+        {
+          orderInfo.value.toDay=1;
+          ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);
+          orderInfo.value.dminMinute=9;
+          orderInfo.value.dmaxMinute=21;
+          orderInfo.value.deliveryHour='9:00';
+        }
+        else{
+          if((hour>=0)&&(hour<=9))
+          {
+            if(hour<3){orderInfo.value.toDay=1; ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);}
+            orderInfo.value.dminMinute=9;
+            orderInfo.value.dmaxMinute=21;
+            orderInfo.value.deliveryHour='09:00';
+          }
+          else{
+            orderInfo.value.dminMinute=hour.toDouble();
+            orderInfo.value.dmaxMinute=00;
+            orderInfo.value.deliveryHour='${hour.toString()}:00';
+          }
+        }
+      }
+    if(orderInfo.value.toDay==0){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now())+' '+orderInfo.value.deliveryHour;}
+    if(orderInfo.value.toDay==1){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1)))+' '+orderInfo.value.deliveryHour;}
+
+    orderInfo.refresh();
+  }
+  void setOrderDay(int b){
+    orderInfo.value.toDay=b;
+    checkTimeDeliver();
+
+    orderInfo.refresh();
+  }
+  void setDeliveryTime(String time){
+    orderInfo.value.deliveryHour=time+'0';
+    if(orderInfo.value.toDay==0){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now())+' '+orderInfo.value.deliveryHour;}
+    if(orderInfo.value.toDay==1){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1)))+' '+orderInfo.value.deliveryHour;}
+    orderInfo.refresh();
+  }
+  @override
   void getByListId(List<dynamic> listOfId)async{
     print('listOfId'+listOfId.length.toString());
     byListIdStatus.value=xStatus.loading;
     try{
       listOfProducts!.value=await GetData().getListById(listOfId);
       // print('getByListId-'+listOfProducts!.value.length.toString());
+      // getOrderInfo();
       checkLike();
       checkBagList();
       checkTotalPrice();
@@ -64,9 +121,11 @@ class ProductX extends GetxController{
       _temp.add(element.product_id);
     });
     print('listOfId'+_temp.length.toString());
+    listOfProducts!.value=[];
     byListIdStatus.value=xStatus.loading;
     try{
-      listOfProducts!.value=await GetData().getListById(_temp);
+      if(_temp.length!=0){listOfProducts!.value=await GetData().getListById(_temp);}else{listOfProducts!.value=[];}
+      getOrderInfo();
       checkLike();
       checkBagList();
       checkTotalPrice();
@@ -90,10 +149,12 @@ class ProductX extends GetxController{
   @override
   void getBagList(String clientId)async{
     bagListStatus.value=xStatus.loading;
+    bagList.value=[];
     try{
       bagList.value=(await GetData().getBagList(clientId))!;
       print('getBagList-'+bagList.value.length.toString());
       bagListStatus.value=xStatus.loaded;
+      // getOrderInfo();
       checkLike();
       checkBagList();
       checkTotalPrice();

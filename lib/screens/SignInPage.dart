@@ -10,6 +10,7 @@ import 'package:shaikapp/getX/SignInGetX.dart';
 import 'package:shaikapp/getX/events.dart';
 import 'package:shaikapp/screens/HomeScreen.dart';
 import 'package:shaikapp/services/firebase_messaging_service.dart';
+import 'package:shaikapp/services/snackBAr.dart';
 import 'package:shaikapp/style.dart';
 import 'package:shaikapp/widgets/ButtonCustom.dart';
 import 'package:shaikapp/widgets/CustomTextField.dart';
@@ -24,8 +25,13 @@ class SignInPage extends StatelessWidget {
   bool _isWaitinSMS=false;
 TextEditingController _controller=new TextEditingController();
 TextEditingController _codecontroller=new TextEditingController();
+//   String? token='';
+// void getToken ()async{
+// token= await Get.find<FireBaseMessagingService>().getDeviceToken();
+// }
   @override
   Widget build(BuildContext context) {
+  // getToken();
     SignInX.status.value=xSignIn.enternumber;
 
     telephony.requestPhoneAndSmsPermissions;
@@ -40,7 +46,7 @@ TextEditingController _codecontroller=new TextEditingController();
               _codecontroller.text=body;
               if(_codecontroller.text.length==6)
               {
-                SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,await Get.find<FireBaseMessagingService>().getDeviceToken());
+                SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,Get.find<ProfileX>().user.value.devicetoken);
               }
             }
           print('incomSMS='+body);
@@ -79,8 +85,10 @@ TextEditingController _codecontroller=new TextEditingController();
                         onTap: () async{
                           if(_codecontroller.text.length==6)
                           {
-                            SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,await Get.find<FireBaseMessagingService>().getDeviceToken());
+                            ShowSnackBar('SHAIK', 'code len='+_codecontroller.text.length.toString());
+                            SignInX.VerifyCode('+993'+_controller.text, _codecontroller.text,Get.find<ProfileX>().user.value.devicetoken);
                           }
+                          else{ShowSnackBar('SHAIK', 'code len='+_codecontroller.text.length.toString());}
                         }, onCountDown: () { SignInX.status.value=xSignIn.enternumber;_controller.text=''; }, timer: 60, phone: '+993'+_controller.text,);
                   }
 

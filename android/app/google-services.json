@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "821277087503",
-    "project_id": "shaikapp-6acb5",
-    "storage_bucket": "shaikapp-6acb5.appspot.com"
+    "project_number": "774419887554",
+    "project_id": "shaikapp-fab9b",
+    "storage_bucket": "shaikapp-fab9b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:821277087503:android:164cf26a23fa41b7e7d07a",
+        "mobilesdk_app_id": "1:774419887554:android:9f9e384af0722ad087125b",
         "android_client_info": {
           "package_name": "shop.shaik.shaikapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "821277087503-osiediuot2ikijs3su10q0nus2ikgg5t.apps.googleusercontent.com",
+          "client_id": "774419887554-ipct90h7dmcssschb348ro21260fb7s0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDpiSZX_04ANSkk1lfSv2lJKxGvlfb-siE"
+          "current_key": "AIzaSyCOzgHtX2SSLkkevjxYvzcwW-SQs2ldMXI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "821277087503-osiediuot2ikijs3su10q0nus2ikgg5t.apps.googleusercontent.com",
+              "client_id": "774419887554-ipct90h7dmcssschb348ro21260fb7s0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -6,6 +6,7 @@ import 'package:shaikapp/models/bag_list.dart';
 import 'package:shaikapp/models/category_list.dart';
 
 import 'package:shaikapp/models/clientProfile.dart';
+import 'package:shaikapp/models/orderInfo.dart';
 import 'package:shaikapp/models/products.dart';
 import 'package:shaikapp/models/slider_list.dart';
 
@@ -31,6 +32,15 @@ class GetData {
    _map=_response.data;
    _temp=_map['data'];
    return _temp!.map((json) => CategoryList.fromJson(json)).toList();
+ }
+ Future<OrderInfo> getOrderInfo()async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   // List<dynamic>? _temp;
+   _response=await _postData(ApiLinks.orderInfo, null, '');
+   _map=_response.data['data'];
+   // _temp=_map['data'];
+   return OrderInfo.fromJson(_map);
  }
  Future<ClientProfile> codeVerify(String phone,String code,String? device_token)async{
    Response? _response;
@@ -123,6 +133,21 @@ class GetData {
    _response= await _postData(ApiLinks.addToBag, formData, '');
    print('likeSet-'+_response.data);
    return true;
+ }
+ Future<bool> toOrder(String client_id,String address,String phone,String order_name,String delivery_date)async{
+   FormData formData;
+   Response? _response;
+   //client_id, address, order_name, delivery_date, phone
+   formData=FormData.fromMap({
+     'client_id':client_id,
+     'address':address,
+     'phone':phone,
+     'order_name':order_name,
+     'delivery_date':delivery_date,
+   });
+   _response= await _postData(ApiLinks.toOrder, formData, '');
+   if(_response.statusCode==200)
+     {return true;}else{return false;}
  }
  Future<bool> deleteFromBag(String productId,String clientId)async{
    FormData formData;

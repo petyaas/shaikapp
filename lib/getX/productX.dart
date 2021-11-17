@@ -63,7 +63,7 @@ class ProductX extends GetxController{
           ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);
           orderInfo.value.dminMinute=9;
           orderInfo.value.dmaxMinute=21;
-          orderInfo.value.deliveryHour='9:00';
+          orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
         }
         else{
           if((hour>=0)&&(hour<=9))
@@ -71,15 +71,19 @@ class ProductX extends GetxController{
             if(hour<3){orderInfo.value.toDay=1; ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);}
             orderInfo.value.dminMinute=9;
             orderInfo.value.dmaxMinute=21;
-            orderInfo.value.deliveryHour='09:00';
+            orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
           }
           else{
             orderInfo.value.dminMinute=hour.toDouble();
-            orderInfo.value.dmaxMinute=00;
-            orderInfo.value.deliveryHour='${hour.toString()}:00';
+            orderInfo.value.dmaxMinute=21;
+            orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
           }
         }
-      }
+      }else{
+      orderInfo.value.dminMinute=9;
+      orderInfo.value.dmaxMinute=21;
+      orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
+    }
     if(orderInfo.value.toDay==0){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now())+' '+orderInfo.value.deliveryHour;}
     if(orderInfo.value.toDay==1){orderInfo.value.deliverDate= DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1)))+' '+orderInfo.value.deliveryHour;}
 

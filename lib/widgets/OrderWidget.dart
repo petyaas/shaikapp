@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shaikapp/getX/ProfileX.dart';
 import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/models/tiOrder.dart';
@@ -243,9 +244,9 @@ class OrderWidget extends StatelessWidget {
                             showPicker(
                               is24HrFormat:true,
                               context: context,
-                              // minHour: 9.0,
-                              // maxHour: 21.0,
-                              value: TimeOfDay.now().replacing(minute: 00),
+                              minHour: Get.find<ProductX>().orderInfo.value.dminMinute,
+                              maxHour: Get.find<ProductX>().orderInfo.value.dmaxMinute,
+                              value: TimeOfDay.fromDateTime(DateFormat("HH:ss").parse(Get.find<ProductX>().orderInfo.value.deliveryHour)),
                               onChange: (TimeOfDay newTime){
                                 Get.find<ProductX>().setDeliveryTime(newTime.hour.toString()+':'+newTime.minute.toString());
                               },

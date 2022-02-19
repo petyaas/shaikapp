@@ -21,7 +21,13 @@ class ProductX extends GetxController{
   Rx<xStatus> byListIdStatus=xStatus.empty.obs;
   RxList<dynamic> likeList=<dynamic>[].obs;
   RxList<BagList> bagList=<BagList>[].obs;
+  RxList<Products> topSalesbagList=<Products>[].obs;
+  RxList<Products> topManSalesbagList=<Products>[].obs;
+  RxList<Products> topWomanSalesbagList=<Products>[].obs;
+  RxList<Products> topUnisexSalesbagList=<Products>[].obs;
+  RxList<Products> topChildSalesbagList=<Products>[].obs;
   Rx<xStatus> bagListStatus=xStatus.empty.obs;
+  Rx<xStatus> topSalesList=xStatus.empty.obs;
   RxBool checkBagNotify=false.obs;
   final  orderInfo=OrderInfo(delivery: true, hour: '0', delivery_price: 0, toDay: 0, deliveryHour: '', dminMinute: 0, dmaxMinute: 0, deliverDate: '').obs;
 
@@ -166,6 +172,33 @@ class ProductX extends GetxController{
       bagListStatus.value=xStatus.error;
     }
   }
+
+  @override
+  void getTopSalesList(String category_id)async{
+    topSalesList.value=xStatus.loading;
+    topSalesbagList.value=[];
+    try{
+      topSalesbagList.value=(await GetData().getTopSalesList(''))!;
+      topManSalesbagList.value=(await GetData().getTopSalesList(Get.find<CategoryGetX>().listOfCategory!.value[0].id))!;
+      topWomanSalesbagList.value=(await GetData().getTopSalesList(Get.find<CategoryGetX>().listOfCategory!.value[1].id))!;
+      topUnisexSalesbagList.value=(await GetData().getTopSalesList(Get.find<CategoryGetX>().listOfCategory!.value[2].id))!;
+      topChildSalesbagList.value=(await GetData().getTopSalesList(Get.find<CategoryGetX>().listOfCategory!.value[3].id))!;
+      print('getTopSalesList-'+topSalesbagList.value.length.toString());
+      // getOrderInfo();
+      topSalesList.value=xStatus.loaded;
+      topSalesbagList.refresh();
+      topManSalesbagList.refresh();
+      topWomanSalesbagList.refresh();
+      topUnisexSalesbagList.refresh();
+      topChildSalesbagList.refresh();
+      checkLike();
+      checkBagList();
+      checkTotalPrice();
+    }catch(_){
+      topSalesList.value=xStatus.error;
+    }
+  }
+
   void checkTotalPrice(){
     if(bagList.value.length!=0)
       {

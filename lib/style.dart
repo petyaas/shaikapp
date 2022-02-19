@@ -105,7 +105,7 @@ class AppColor {
         ),
         scaffoldBackgroundColor: Color(0xFFF2F2F2),
         primaryColorLight: Color.fromRGBO(47, 51, 57, 1),
-        accentColor: Color.fromRGBO(247, 200, 115, 1),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color.fromRGBO(247, 200, 115, 1)),
       );
   }
 

@@ -62,6 +62,11 @@ class DefText{
   static String yesterday='yesterday';
   static String deliveryNotSupDay='deliveryNotSupDay';
   static String oClock='oClock';
+  static String topSales='topSales';
+  static String topManSales='topManSales';
+  static String topWomanSales='topWomanSales';
+  static String topUnisexSales='topUnisexSales';
+  static String topChildSales='topChildSales';
 
 }
 class ApiLinks{
@@ -77,6 +82,7 @@ class ApiLinks{
   static String likeListGet='api/v1/client/like-list';
   static String listById='api/v1/product/list-ids';
   static String bagListGet='api/v1/basket/get';
+  static String getTopSales='api/v1/product/top';
   static String addToBag='api/v1/basket/add';
   static String deleteFromBag='api/v1/basket/product-delete';
   static String toOrder='api/v1/order/add';

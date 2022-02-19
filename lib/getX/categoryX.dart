@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shaikapp/getX/events.dart';
+import 'package:shaikapp/getX/productX.dart';
 import 'package:shaikapp/models/category_list.dart';
 import 'package:shaikapp/services/getData.dart';
 
@@ -25,6 +26,7 @@ class CategoryGetX extends GetxController{
   //TODO try goshmaly
   try{
     listOfCategory!.value=await GetData().getCategoryLIst();
+    Get.find<ProductX>().getTopSalesList('');
     _explanddefoult(listOfCategory!.value.length);
     status.value=xStatus.loaded;
   }catch(_){

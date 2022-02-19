@@ -70,6 +70,10 @@ class AppTranslations extends Translations{
       DefText.yesterday:'Завтра',
       DefText.deliveryNotSupDay:'Сегодня доставка больше недоступна!',
       DefText.oClock:'Время',
+      DefText.topSales:'Самые продаваемые',
+      DefText.topManSales:'Самые продаваемые(Мужские)',
+      DefText.topWomanSales:'Самые продаваемые(Женские)',
+      DefText.topChildSales:'Самые продаваемые(Детские)',
 },
     'tk_TK':{
       'NEW':'Täze',
@@ -138,6 +142,10 @@ class AppTranslations extends Translations{
       DefText.yesterday:'Ertir',
       DefText.deliveryNotSupDay:'Bu gunlikçe eltip berme hyzmaty elýeter däl!',
       DefText.oClock:'Sagat',
+      DefText.topSales:'Köp satylanlar',
+      DefText.topManSales:'Köp satylanlar(Erkek)',
+      DefText.topWomanSales:'Köp satylanlar(Zenan)',
+      DefText.topChildSales:'Köp satylanlar(Çagalar uçin)',
     }
   };
 

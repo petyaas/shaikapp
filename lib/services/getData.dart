@@ -31,6 +31,7 @@ class GetData {
    _response=await _postData(ApiLinks.categoryList, null, '');
    _map=_response.data;
    _temp=_map['data'];
+   print('getCategoryLIst'+_temp.toString());
    return _temp!.map((json) => CategoryList.fromJson(json)).toList();
  }
  Future<OrderInfo> getOrderInfo()async{
@@ -233,6 +234,28 @@ class GetData {
    temp=_map['data'];
    print('temp='+temp.toString());
    return temp!.map((json) => BagList.fromJson(json)).toList();
+ }
+ Future<List<Products>?> getTopSalesList(String category_id)async{
+   Response? _response;
+   Map<String, dynamic> _map;
+   List<dynamic>? temp=[];
+   print('getTopSalesList-'+category_id);
+   FormData? formData;
+   if(category_id!=''){   formData=FormData.fromMap({
+     'category_id':category_id,
+   });
+   }
+   else{
+   }
+   _response=await _postData(ApiLinks.getTopSales, formData, '');
+   print(_response.data);
+   _map=_response.data;
+
+   print(_map['data']);
+
+   temp=_map['data'];
+   print('temp='+temp.toString());
+   return temp!.map((json) => Products.fromJson(json)).toList();
  }
 
   Future<Response> _postData(

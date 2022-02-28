@@ -177,7 +177,14 @@ class OrderWidget extends StatelessWidget {
             hint: DefText.phone.tr,
           ),
         ),
-        AutoSizeText(DefText.delivertime.tr,style: AppColor.headlinebluegray2,textAlign: TextAlign.start,),
+        Column(
+          children: [
+            if(Get.find<ProductX>().orderNotSup.value)
+            AutoSizeText(DefText.deliveryNotSupDay.tr,style: AppColor.productpricetext,textAlign: TextAlign.start,),
+            if(Get.find<ProductX>().orderNotSup.value==false)
+            AutoSizeText(DefText.delivertime.tr,style: AppColor.headlinebluegray2,textAlign: TextAlign.start,),
+          ],
+        ),
         Divider(color: AppColor.backgroundcolorgrey,),
         Obx(()
         {

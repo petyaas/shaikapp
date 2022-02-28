@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,9 @@ class StartScreen extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(color: AppColor.backgroundcolorgrey,
-              onPressed: (){
+              onPressed: ()async{
+                const number = '+99362329777'; //set the number here
+                bool? res = await FlutterPhoneDirectCaller.callNumber(number);
               },
               icon: FaIcon(FontAwesomeIcons.phone),
               iconSize: 24,),

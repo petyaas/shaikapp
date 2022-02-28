@@ -72,8 +72,15 @@ class AppTranslations extends Translations{
       DefText.oClock:'Время',
       DefText.topSales:'Самые продаваемые',
       DefText.topManSales:'Самые продаваемые(Мужские)',
+      DefText.topUnisexSales:'Top Unisex',
       DefText.topWomanSales:'Самые продаваемые(Женские)',
       DefText.topChildSales:'Самые продаваемые(Детские)',
+      DefText.deliverNotSup:'Самые продаваемые(Детские)',
+      DefText.Rek1:'Качество товара',
+      DefText.Rek2:'Стойкость до 48 часов',
+      DefText.Rek3:'Быстрая доставка',
+      DefText.Rek4:'Наличие товара',
+      DefText.Rek0:'Наши преимущества',
 },
     'tk_TK':{
       'NEW':'Täze',
@@ -146,6 +153,12 @@ class AppTranslations extends Translations{
       DefText.topManSales:'Köp satylanlar(Erkek)',
       DefText.topWomanSales:'Köp satylanlar(Zenan)',
       DefText.topChildSales:'Köp satylanlar(Çagalar uçin)',
+      DefText.topUnisexSales:'Top Unisex',
+      DefText.Rek1:'Belli Brand',
+      DefText.Rek2:'48 sagada çenli durnykly',
+      DefText.Rek3:'Eltip bermek hyzmaty',
+      DefText.Rek4:'Elýeter baha',
+      DefText.Rek0:'Bizi saýlasaňyz',
     }
   };
 

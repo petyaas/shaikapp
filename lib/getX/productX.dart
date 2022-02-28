@@ -29,6 +29,7 @@ class ProductX extends GetxController{
   Rx<xStatus> bagListStatus=xStatus.empty.obs;
   Rx<xStatus> topSalesList=xStatus.empty.obs;
   RxBool checkBagNotify=false.obs;
+  RxBool orderNotSup=false.obs;
   final  orderInfo=OrderInfo(delivery: true, hour: '0', delivery_price: 0, toDay: 0, deliveryHour: '', dminMinute: 0, dmaxMinute: 0, deliverDate: '').obs;
 
   // @override
@@ -66,7 +67,8 @@ class ProductX extends GetxController{
         if(hour>=21)
         {
           orderInfo.value.toDay=1;
-          ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);
+          orderNotSup.value=true;
+          // ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);
           orderInfo.value.dminMinute=9;
           orderInfo.value.dmaxMinute=21;
           orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
@@ -74,7 +76,11 @@ class ProductX extends GetxController{
         else{
           if((hour>=0)&&(hour<=9))
           {
-            if(hour<3){orderInfo.value.toDay=1; ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);}
+            if(hour<3){
+              orderNotSup.value=true;
+              orderInfo.value.toDay=1;
+              // ShowSnackBar('SHAIK', DefText.deliveryNotSupDay.tr);
+            }
             orderInfo.value.dminMinute=9;
             orderInfo.value.dmaxMinute=21;
             orderInfo.value.deliveryHour=DateFormat("HH:ss").format(DateTime(DateTime.now().year,0,0,orderInfo.value.dminMinute.toInt(),0));
@@ -96,6 +102,7 @@ class ProductX extends GetxController{
     orderInfo.refresh();
   }
   void setOrderDay(int b){
+    orderNotSup.value=false;
     orderInfo.value.toDay=b;
     checkTimeDeliver();
 

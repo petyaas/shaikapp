@@ -29,7 +29,7 @@ dependencies:
   shared_preferences: ^2.0.6
   #IMAGES, SLIDERS, LAYOUTS
   cached_network_image: ^3.0.0
-  font_awesome_flutter: ^9.1.0
+  font_awesome_flutter: ^9.2.0
   dio: ^4.0.0
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
@@ -50,6 +50,7 @@ dependencies:
   day_night_time_picker: ^1.0.3+1
   intl: ^0.17.0
   flutter_local_notifications: ^9.1.0
+  flutter_phone_direct_caller: ^2.1.0
 
 dev_dependencies:
   flutter_test:

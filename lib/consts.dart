@@ -58,6 +58,7 @@ class DefText{
   static String orderSent='orderSent';
   static String orderNotSent='orderNotSent';
   static String delivertime='delivertime';
+  static String deliverNotSup='deliverNotSup';
   static String toDay='toDay';
   static String yesterday='yesterday';
   static String deliveryNotSupDay='deliveryNotSupDay';
@@ -67,6 +68,11 @@ class DefText{
   static String topWomanSales='topWomanSales';
   static String topUnisexSales='topUnisexSales';
   static String topChildSales='topChildSales';
+  static String Rek1='Rek1';
+  static String Rek0='Rek0';
+  static String Rek2='Rek2';
+  static String Rek3='Rek3';
+  static String Rek4='Rek4';
 
 }
 class ApiLinks{
